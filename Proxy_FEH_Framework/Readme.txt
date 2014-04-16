@@ -3,7 +3,7 @@ Proxy_FEH_Framework
 
 This repository contains the source code for the development objects listed in the following SCN blog
 
-http://scn.sap.com/community/pi-and-soa-middleware/blog/2014/03/26/fehech-setup-for-custom-asynchronous-proxy
+http://scn.sap.com/community/pi-and-soa-middleware/blog/2014/04/16/custom-proxy-framework-with-fehech
 
 
 1) SI_IB_A_PurchaseOrderCreate.wsdl
