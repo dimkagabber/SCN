@@ -1,0 +1,766 @@
+<?xml version="1.0" encoding="utf-16"?>
+<nugget name="PROXY_FEH_FRAMEWORK">
+ <CLAS CLSNAME="ZCX_PROXY_PROCESS_ERROR" VERSION="1" LANGU="E" DESCRIPT="Proxy Processing Error" UUID="5346418DA1D81030E10080000AD00C21" CATEGORY="40" EXPOSURE="2" STATE="1" RELEASE="0" AUTHOR="ENGSWEEY" CREATEDON="20140411" CHANGEDON="00000000" CHGDANYON="00000000" CLSFINAL="X" CLSCCINCL="X" FIXPT="X" UNICODE="X" R3RELEASE="702" CLSBCCAT="00" DURATION_TYPE="0 " RISK_LEVEL="0 " REFCLSNAME="CX_STATIC_CHECK">
+  <publicSection>class ZCX_PROXY_PROCESS_ERROR definition
+  public
+  inheriting from CX_STATIC_CHECK
+  final
+  create public .
+
+public section.
+*&quot;* public components of class ZCX_PROXY_PROCESS_ERROR
+*&quot;* do not include other source files here!!!
+
+  constants ZCX_PROXY_PROCESS_ERROR type SOTR_CONC value &apos;5345E4A869E00D40E10080000AD00C21&apos;. &quot;#EC NOTEXT
+  data ERROR_CAT type ECH_DTE_ERROR_CATEGORY .
+  data OBJTYPE type ECH_DTE_OBJTYPE .
+  data OBJKEY type STRING .
+  data PRE_MAPPING type FEH_BOOLEAN .
+
+  methods CONSTRUCTOR
+    importing
+      !TEXTID like TEXTID optional
+      !PREVIOUS like PREVIOUS optional
+      !ERROR_CAT type ECH_DTE_ERROR_CATEGORY optional
+      !OBJTYPE type ECH_DTE_OBJTYPE optional
+      !OBJKEY type STRING optional
+      !PRE_MAPPING type FEH_BOOLEAN optional .</publicSection>
+  <protectedSection>protected section.
+*&quot;* protected components of class ZCX_PROXY_PROCESS_ERROR
+*&quot;* do not include other source files here!!!</protectedSection>
+  <privateSection>private section.
+*&quot;* private components of class ZCX_PROXY_PROCESS_ERROR
+*&quot;* do not include other source files here!!!</privateSection>
+  <localImplementation>*&quot;* use this source file for the definition and implementation of
+*&quot;* local helper classes, interface definitions and type
+*&quot;* declarations</localImplementation>
+  <localTypes>*&quot;* use this source file for any type of declarations (class
+*&quot;* definitions, interfaces or type declarations) you need for
+*&quot;* components in the private section</localTypes>
+  <localMacros>*&quot;* use this source file for any macro definitions you need
+*&quot;* in the implementation part of the class</localMacros>
+  <textPool/>
+  <classDocumentation/>
+  <attribute CLSNAME="ZCX_PROXY_PROCESS_ERROR" CMPNAME="ERROR_CAT" VERSION="1" LANGU="E" DESCRIPT="Error Category" EXPOSURE="2" STATE="1" EDITORDER="2 " AUTHOR="ENGSWEEY" CREATEDON="20140411" CHANGEDBY="ENGSWEEY" CHANGEDON="20140411" ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="ECH_DTE_ERROR_CATEGORY" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " R3RELEASE="702" TYPESRC_LENG="0 "/>
+  <attribute CLSNAME="ZCX_PROXY_PROCESS_ERROR" CMPNAME="OBJKEY" VERSION="1" LANGU="E" DESCRIPT="Object Key" EXPOSURE="2" STATE="1" EDITORDER="4 " AUTHOR="ENGSWEEY" CREATEDON="20140411" CHANGEDBY="ENGSWEEY" CHANGEDON="20140411" ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " R3RELEASE="702" TYPESRC_LENG="0 "/>
+  <attribute CLSNAME="ZCX_PROXY_PROCESS_ERROR" CMPNAME="OBJTYPE" VERSION="1" LANGU="E" DESCRIPT="Object Type" EXPOSURE="2" STATE="1" EDITORDER="3 " AUTHOR="ENGSWEEY" CREATEDON="20140411" CHANGEDBY="ENGSWEEY" CHANGEDON="20140411" ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="ECH_DTE_OBJTYPE" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " R3RELEASE="702" TYPESRC_LENG="0 "/>
+  <attribute CLSNAME="ZCX_PROXY_PROCESS_ERROR" CMPNAME="PRE_MAPPING" VERSION="1" LANGU="E" DESCRIPT="Error Occurred During Mapping" EXPOSURE="2" STATE="1" EDITORDER="5 " AUTHOR="ENGSWEEY" CREATEDON="20140411" CHANGEDBY="ENGSWEEY" CHANGEDON="20140411" ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="FEH_BOOLEAN" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " R3RELEASE="702" TYPESRC_LENG="0 "/>
+  <attribute CLSNAME="ZCX_PROXY_PROCESS_ERROR" CMPNAME="ZCX_PROXY_PROCESS_ERROR" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="1 " AUTHOR="ENGSWEEY" CREATEDON="20140411" CHANGEDON="00000000" ATTDECLTYP="2" ATTVALUE="&apos;5345E4A869E00D40E10080000AD00C21&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="SOTR_CONC" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " LOCKED="X" R3RELEASE="702" TYPESRC_LENG="0 ">
+   <sotr PAKET="$TMP" CREA_LAN="E" TRALA_TYPE="1" CREA_NAME="ENGSWEEY" CREA_TSTUT="20140411035901" CHAN_NAME="ENGSWEEY" CHAN_TSTUT="20140411035901" LST_IMPORT="00000000" TRALA_VEC="00000000000000000000" CATGY_VEC="00000000000000000000" OBJID_VEC="08000000000000000000">
+    <sotrText LANGU="E" LFD_NUM="0001" FLAG_CNTXT="X" CREA_NAME="ENGSWEEY" CREA_TSTUT="20140411035901" CHAN_NAME="ENGSWEEY" CHAN_TSTUT="20140411035901" STATUS="R" VERSION="0002" LENGTH="255" TEXT="Proxy Processing Error"/>
+   </sotr>
+  </attribute>
+  <inheritance CLSNAME="ZCX_PROXY_PROCESS_ERROR" REFCLSNAME="CX_STATIC_CHECK" VERSION="1" STATE="1" AUTHOR="ENGSWEEY" CREATEDON="20140411" CHANGEDON="00000000"/>
+  <method CLSNAME="ZCX_PROXY_PROCESS_ERROR" CMPNAME="CONSTRUCTOR" VERSION="1" LANGU="E" DESCRIPT="CONSTRUCTOR" EXPOSURE="2" STATE="1" EDITORDER="1 " DISPID="0 " AUTHOR="ENGSWEEY" CREATEDON="20140411" CHANGEDON="00000000" MTDTYPE="2" MTDDECLTYP="0" LOCKED="X" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZCX_PROXY_PROCESS_ERROR" CMPNAME="CONSTRUCTOR" SCONAME="TEXTID" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="2" EDITORDER="1 " DISPID="0 " AUTHOR="ENGSWEEY" CREATEDON="20140411" CHANGEDBY="ENGSWEEY" CHANGEDON="20140411" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="0" TYPE="TEXTID" PAROPTIONL="X"/>
+   <parameter CLSNAME="ZCX_PROXY_PROCESS_ERROR" CMPNAME="CONSTRUCTOR" SCONAME="PREVIOUS" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="2" EDITORDER="2 " DISPID="0 " AUTHOR="ENGSWEEY" CREATEDON="20140411" CHANGEDBY="ENGSWEEY" CHANGEDON="20140411" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="0" TYPE="PREVIOUS" PAROPTIONL="X"/>
+   <parameter CLSNAME="ZCX_PROXY_PROCESS_ERROR" CMPNAME="CONSTRUCTOR" SCONAME="ERROR_CAT" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="2" EDITORDER="3 " DISPID="0 " AUTHOR="ENGSWEEY" CREATEDON="20140411" CHANGEDBY="ENGSWEEY" CHANGEDON="20140411" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="ECH_DTE_ERROR_CATEGORY" PAROPTIONL="X"/>
+   <parameter CLSNAME="ZCX_PROXY_PROCESS_ERROR" CMPNAME="CONSTRUCTOR" SCONAME="OBJTYPE" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="2" EDITORDER="4 " DISPID="0 " AUTHOR="ENGSWEEY" CREATEDON="20140411" CHANGEDBY="ENGSWEEY" CHANGEDON="20140411" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="ECH_DTE_OBJTYPE" PAROPTIONL="X"/>
+   <parameter CLSNAME="ZCX_PROXY_PROCESS_ERROR" CMPNAME="CONSTRUCTOR" SCONAME="OBJKEY" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="2" EDITORDER="5 " DISPID="0 " AUTHOR="ENGSWEEY" CREATEDON="20140411" CHANGEDBY="ENGSWEEY" CHANGEDON="20140411" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING" PAROPTIONL="X"/>
+   <parameter CLSNAME="ZCX_PROXY_PROCESS_ERROR" CMPNAME="CONSTRUCTOR" SCONAME="PRE_MAPPING" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="2" EDITORDER="6 " DISPID="0 " AUTHOR="ENGSWEEY" CREATEDON="20140411" CHANGEDBY="ENGSWEEY" CHANGEDON="20140411" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="FEH_BOOLEAN" PAROPTIONL="X"/>
+   <source>method CONSTRUCTOR.
+CALL METHOD SUPER-&gt;CONSTRUCTOR
+EXPORTING
+TEXTID = TEXTID
+PREVIOUS = PREVIOUS
+.
+ IF textid IS INITIAL.
+   me-&gt;textid = ZCX_PROXY_PROCESS_ERROR .
+ ENDIF.
+me-&gt;ERROR_CAT = ERROR_CAT .
+me-&gt;OBJTYPE = OBJTYPE .
+me-&gt;OBJKEY = OBJKEY .
+me-&gt;PRE_MAPPING = PRE_MAPPING .
+endmethod.</source>
+   <methodDocumentation/>
+   <methodDocumentation/>
+   <methodDocumentation/>
+  </method>
+ </CLAS>
+ <CLAS CLSNAME="ZCL_PROXY_INPUT" VERSION="1" LANGU="E" DESCRIPT="Framework class for proxy with FEH" UUID="5341FD96619C0830E10080000AD00C21" CATEGORY="00" EXPOSURE="1" STATE="1" RELEASE="0" AUTHOR="ENGSWEEY" CREATEDON="20140408" CHANGEDBY="ENGSWEEY" CHANGEDON="20140415" CHGDANYON="00000000" CLSCCINCL="X" FIXPT="X" UNICODE="X" R3RELEASE="702" CLSBCCAT="00" DURATION_TYPE="0 " RISK_LEVEL="0 ">
+  <implementing CLSNAME="ZCL_PROXY_INPUT" REFCLSNAME="IF_ECH_ACTION" VERSION="1" EXPOSURE="2" STATE="1" AUTHOR="ENGSWEEY" CREATEDON="20140415" CHANGEDON="00000000" RELTYPE="1" EDITORDER="1 "/>
+  <publicSection>class ZCL_PROXY_INPUT definition
+  public
+  create protected .
+
+public section.
+*&quot;* public components of class ZCL_PROXY_INPUT
+*&quot;* do not include other source files here!!!
+
+  interfaces IF_ECH_ACTION
+      final methods FAIL
+                    FINALIZE_AFTER_RETRY_ERROR
+                    FINISH
+                    NO_ROLLBACK_ON_RETRY_ERROR
+                    RETRY .
+
+  class-methods S_GET_INSTANCE
+    importing
+      !IV_ECH_COMPONENT type ECH_DTE_COMPONENT
+      !IV_ECH_PROCESS type ECH_DTE_PROCESS
+    returning
+      value(RO_INTERFACE) type ref to ZCL_PROXY_INPUT .
+  methods EXECUTE_IN
+    importing
+      !IS_INPUT type ANY
+    raising
+      CX_AI_APPLICATION_FAULT .
+  methods PPO_RETRY
+    importing
+      !I_ERROR_OBJECT_ID type ECH_DTE_ERROR_OBJECT_ID
+      !I_DATA type ref to STRING
+    exporting
+      !E_EXECUTION_FAILED type XFELD
+      !E_RETURN_MESSAGE type BAPIRET2 .
+  methods PPO_FINISH
+    importing
+      !I_DATA type ref to STRING
+      !I_ERROR_OBJECT_ID type ECH_DTE_ERROR_OBJECT_ID optional
+    exporting
+      !E_EXECUTION_FAILED type XFELD
+      !E_RETURN_MESSAGE type BAPIRET2 .
+  methods PPO_FAIL
+    importing
+      !I_DATA type ref to STRING
+      !I_ERROR_OBJECT_ID type ECH_DTE_ERROR_OBJECT_ID optional
+      !I_MAIN_ERROR type BAPIRET2
+      !I_MESSAGES type BAPIRET2_T
+      !I_ERROR_CATEGORY type ECH_DTE_ERROR_CATEGORY
+    exporting
+      !E_EXECUTION_FAILED type XFELD
+      !E_RETURN_MESSAGE type BAPIRET2 .</publicSection>
+  <protectedSection>protected section.
+*&quot;* protected components of class ZCL_PROXY_INPUT
+*&quot;* do not include other source files here!!!
+
+  data O_PPO_HANDLER type ref to ZCL_PROXY_INPUT .
+  data O_FEH type ref to CL_FEH_REGISTRATION .
+  data REF_INPUT_DATA type ref to DATA .
+  data T_BAPIRET2 type BAPIRET2_T .
+  data V_EXCEPTION_CLASS type SEOSCONAME .
+  data V_RETRY type XFELD .
+  data O_SERVER_CONTEXT type ref to IF_WS_SERVER_CONTEXT .
+  data O_PAYLOAD_PROTOCOL type ref to IF_WSPROTOCOL_PAYLOAD .
+
+  methods INIT .
+  methods REGISTER_FEH .
+  methods PROCESS_APPLICATION
+    raising
+      CX_AI_APPLICATION_FAULT .
+  methods VALIDATION_CHECK
+    raising
+      ZCX_PROXY_PROCESS_ERROR .
+  methods PROCESS_INPUT_DATA
+    raising
+      ZCX_PROXY_PROCESS_ERROR .
+  methods UPDATE_LOGS
+    importing
+      !IV_PROCESSING_STATUS type CHAR1 .
+  methods GET_INPUT_DATA
+    exporting
+      !ES_INPUT type ANY .
+  methods ADD_MESSAGE
+    importing
+      !IV_MSGTY type SYMSGTY
+      !IV_MSGID type MSGID
+      !IV_MSGNO type ANY
+      !IV_MSGV1 type ANY optional
+      !IV_MSGV2 type ANY optional
+      !IV_MSGV3 type ANY optional
+      !IV_MSGV4 type ANY optional .
+  methods COLLECT_FEH_AND_RAISE_ERROR
+    importing
+      !IV_ERROR_CAT type ECH_DTE_ERROR_CATEGORY
+      !IV_OBJTYPE type ECH_STR_OBJECT-OBJTYPE
+      !IV_OBJKEY type ANY
+      !IV_PRE_MAPPING type FEH_BOOLEAN
+    raising
+      CX_AI_APPLICATION_FAULT .</protectedSection>
+  <privateSection>private section.
+*&quot;* private components of class ZCL_PROXY_INPUT
+*&quot;* do not include other source files here!!!
+
+  class-data O_INTERFACE type ref to ZCL_PROXY_INPUT .
+
+  methods GET_PPO_HANDLER
+    importing
+      !IV_ERROR_OBJECT_ID type ECH_DTE_ERROR_OBJECT_ID
+    exporting
+      !EV_EXECUTION_FAILED type XFELD
+      !ES_RETURN_MESSAGE type BAPIRET2
+      !EO_HANDLER type ref to ZCL_PROXY_INPUT .</privateSection>
+  <localImplementation>*&quot;* use this source file for the definition and implementation of
+*&quot;* local helper classes, interface definitions and type
+*&quot;* declarations</localImplementation>
+  <localTypes>*&quot;* use this source file for any type of declarations (class
+*&quot;* definitions, interfaces or type declarations) you need for
+*&quot;* components in the private section</localTypes>
+  <localMacros>*&quot;* use this source file for any macro definitions you need
+*&quot;* in the implementation part of the class</localMacros>
+  <textPool/>
+  <classDocumentation/>
+  <attribute CLSNAME="ZCL_PROXY_INPUT" CMPNAME="O_FEH" VERSION="1" LANGU="E" DESCRIPT="Registration and Restart of FEH" EXPOSURE="1" STATE="1" EDITORDER="3 " AUTHOR="ENGSWEEY" CREATEDON="20140408" CHANGEDBY="ENGSWEEY" CHANGEDON="20140415" ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="3" TYPE="CL_FEH_REGISTRATION" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " R3RELEASE="702" TYPESRC_LENG="0 "/>
+  <attribute CLSNAME="ZCL_PROXY_INPUT" CMPNAME="O_INTERFACE" VERSION="1" LANGU="E" DESCRIPT="Framework class for proxy with FEH" EXPOSURE="0" STATE="1" EDITORDER="1 " AUTHOR="ENGSWEEY" CREATEDON="20140408" CHANGEDON="00000000" ATTDECLTYP="1" ATTEXPVIRT="0" TYPTYPE="3" TYPE="ZCL_PROXY_INPUT" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " R3RELEASE="702" TYPESRC_LENG="0 "/>
+  <attribute CLSNAME="ZCL_PROXY_INPUT" CMPNAME="O_PAYLOAD_PROTOCOL" VERSION="1" LANGU="E" DESCRIPT="XI and WS: Access to Payload" EXPOSURE="1" STATE="1" EDITORDER="9 " AUTHOR="ENGSWEEY" CREATEDON="20140414" CHANGEDBY="ENGSWEEY" CHANGEDON="20140415" ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="3" TYPE="IF_WSPROTOCOL_PAYLOAD" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " R3RELEASE="702" TYPESRC_LENG="0 "/>
+  <attribute CLSNAME="ZCL_PROXY_INPUT" CMPNAME="O_PPO_HANDLER" VERSION="1" LANGU="E" DESCRIPT="Framework class for proxy with FEH" EXPOSURE="1" STATE="1" EDITORDER="2 " AUTHOR="ENGSWEEY" CREATEDON="20140415" CHANGEDON="00000000" ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="3" TYPE="ZCL_PROXY_INPUT" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " R3RELEASE="702" TYPESRC_LENG="0 "/>
+  <attribute CLSNAME="ZCL_PROXY_INPUT" CMPNAME="O_SERVER_CONTEXT" VERSION="1" LANGU="E" DESCRIPT="Proxy Server Context" EXPOSURE="1" STATE="1" EDITORDER="8 " AUTHOR="ENGSWEEY" CREATEDON="20140414" CHANGEDBY="ENGSWEEY" CHANGEDON="20140415" ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="3" TYPE="IF_WS_SERVER_CONTEXT" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " R3RELEASE="702" TYPESRC_LENG="0 "/>
+  <attribute CLSNAME="ZCL_PROXY_INPUT" CMPNAME="REF_INPUT_DATA" VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" EDITORDER="4 " AUTHOR="ENGSWEEY" CREATEDON="20140410" CHANGEDBY="ENGSWEEY" CHANGEDON="20140415" ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="3" TYPE="DATA" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " R3RELEASE="702" TYPESRC_LENG="0 "/>
+  <attribute CLSNAME="ZCL_PROXY_INPUT" CMPNAME="T_BAPIRET2" VERSION="1" LANGU="E" DESCRIPT="Return parameter table" EXPOSURE="1" STATE="1" EDITORDER="5 " AUTHOR="ENGSWEEY" CREATEDON="20140411" CHANGEDBY="ENGSWEEY" CHANGEDON="20140415" ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="BAPIRET2_T" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " R3RELEASE="702" TYPESRC_LENG="0 "/>
+  <attribute CLSNAME="ZCL_PROXY_INPUT" CMPNAME="V_EXCEPTION_CLASS" VERSION="1" LANGU="E" DESCRIPT="Exception class name" EXPOSURE="1" STATE="1" EDITORDER="6 " AUTHOR="ENGSWEEY" CREATEDON="20140414" CHANGEDBY="ENGSWEEY" CHANGEDON="20140415" ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="SEOSCONAME" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " R3RELEASE="702" TYPESRC_LENG="0 "/>
+  <attribute CLSNAME="ZCL_PROXY_INPUT" CMPNAME="V_RETRY" VERSION="1" LANGU="E" DESCRIPT="FEH retry" EXPOSURE="1" STATE="1" EDITORDER="7 " AUTHOR="ENGSWEEY" CREATEDON="20140414" CHANGEDBY="ENGSWEEY" CHANGEDON="20140415" ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="XFELD" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " R3RELEASE="702" TYPESRC_LENG="0 "/>
+  <interfaceMethod CLSNAME="ZCL_PROXY_INPUT" CPDNAME="IF_ECH_ACTION~FAIL">
+   <source>METHOD if_ech_action~fail.
+
+  me-&gt;get_ppo_handler( EXPORTING iv_error_object_id  = i_error_object_id
+                       IMPORTING ev_execution_failed = e_execution_failed
+                                 es_return_message   = e_return_message
+                                 eo_handler          = me-&gt;o_ppo_handler ).
+
+  IF e_execution_failed IS INITIAL.
+    me-&gt;o_ppo_handler-&gt;ppo_fail( EXPORTING i_data             = i_data
+                                           i_error_object_id  = i_error_object_id
+                                           i_main_error       = i_main_error
+                                           i_messages         = i_messages
+                                           i_error_category   = i_error_category
+                                 IMPORTING e_execution_failed = e_execution_failed
+                                           e_return_message   = e_return_message ).
+  ENDIF.
+
+ENDMETHOD.</source>
+  </interfaceMethod>
+  <interfaceMethod CLSNAME="ZCL_PROXY_INPUT" CPDNAME="IF_ECH_ACTION~FINALIZE_AFTER_RETRY_ERROR">
+   <source>METHOD if_ech_action~finalize_after_retry_error.
+
+
+ENDMETHOD.</source>
+  </interfaceMethod>
+  <interfaceMethod CLSNAME="ZCL_PROXY_INPUT" CPDNAME="IF_ECH_ACTION~FINISH">
+   <source>METHOD if_ech_action~finish.
+
+  me-&gt;get_ppo_handler( EXPORTING iv_error_object_id  = i_error_object_id
+                       IMPORTING ev_execution_failed = e_execution_failed
+                                 es_return_message   = e_return_message
+                                 eo_handler          = me-&gt;o_ppo_handler ).
+
+  IF e_execution_failed IS INITIAL.
+    me-&gt;o_ppo_handler-&gt;ppo_finish( EXPORTING i_data             = i_data
+                                             i_error_object_id  = i_error_object_id
+                                   IMPORTING e_execution_failed = e_execution_failed
+                                             e_return_message   = e_return_message ).
+  ENDIF.
+
+ENDMETHOD.</source>
+  </interfaceMethod>
+  <interfaceMethod CLSNAME="ZCL_PROXY_INPUT" CPDNAME="IF_ECH_ACTION~NO_ROLLBACK_ON_RETRY_ERROR">
+   <source>METHOD if_ech_action~no_rollback_on_retry_error.
+
+
+ENDMETHOD.</source>
+  </interfaceMethod>
+  <interfaceMethod CLSNAME="ZCL_PROXY_INPUT" CPDNAME="IF_ECH_ACTION~RETRY">
+   <source>METHOD if_ech_action~retry.
+
+  me-&gt;get_ppo_handler( EXPORTING iv_error_object_id  = i_error_object_id
+                       IMPORTING ev_execution_failed = e_execution_failed
+                                 es_return_message   = e_return_message
+                                 eo_handler          = me-&gt;o_ppo_handler ).
+
+  IF e_execution_failed IS INITIAL.
+    me-&gt;o_ppo_handler-&gt;ppo_retry( EXPORTING i_error_object_id  = i_error_object_id
+                                            i_data             = i_data
+                                 	IMPORTING e_execution_failed = e_execution_failed
+                                            e_return_message   = e_return_message ).
+  ENDIF.
+
+ENDMETHOD.</source>
+  </interfaceMethod>
+  <interfaceMethod CLSNAME="ZCL_PROXY_INPUT" CPDNAME="IF_ECH_ACTION~S_CREATE">
+   <source>METHOD if_ech_action~s_create.
+
+* For proxy processing, O_INTERFACE already created
+* For PPO processing, O_INTERFACE will be instance of ZCL_PROXY_INPUT
+  IF o_interface IS NOT BOUND.
+    CREATE OBJECT o_interface.
+  ENDIF.
+  r_action_class = o_interface.
+
+ENDMETHOD.</source>
+  </interfaceMethod>
+  <method CLSNAME="ZCL_PROXY_INPUT" CMPNAME="ADD_MESSAGE" VERSION="1" LANGU="E" DESCRIPT="Add message into BAPIRET" EXPOSURE="1" STATE="1" EDITORDER="13 " DISPID="0 " AUTHOR="ENGSWEEY" CREATEDON="20140411" CHANGEDBY="ENGSWEEY" CHANGEDON="20140416" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZCL_PROXY_INPUT" CMPNAME="ADD_MESSAGE" SCONAME="IV_MSGTY" VERSION="1" LANGU="E" DESCRIPT="Message Type" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="ENGSWEEY" CREATEDON="20140411" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="SYMSGTY"/>
+   <parameter CLSNAME="ZCL_PROXY_INPUT" CMPNAME="ADD_MESSAGE" SCONAME="IV_MSGID" VERSION="1" LANGU="E" DESCRIPT="Message identification" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="ENGSWEEY" CREATEDON="20140411" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="MSGID"/>
+   <parameter CLSNAME="ZCL_PROXY_INPUT" CMPNAME="ADD_MESSAGE" SCONAME="IV_MSGNO" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " AUTHOR="ENGSWEEY" CREATEDON="20140411" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="ANY"/>
+   <parameter CLSNAME="ZCL_PROXY_INPUT" CMPNAME="ADD_MESSAGE" SCONAME="IV_MSGV1" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="4 " DISPID="0 " AUTHOR="ENGSWEEY" CREATEDON="20140411" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="ANY" PAROPTIONL="X"/>
+   <parameter CLSNAME="ZCL_PROXY_INPUT" CMPNAME="ADD_MESSAGE" SCONAME="IV_MSGV2" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="5 " DISPID="0 " AUTHOR="ENGSWEEY" CREATEDON="20140411" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="ANY" PAROPTIONL="X"/>
+   <parameter CLSNAME="ZCL_PROXY_INPUT" CMPNAME="ADD_MESSAGE" SCONAME="IV_MSGV3" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="6 " DISPID="0 " AUTHOR="ENGSWEEY" CREATEDON="20140411" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="ANY" PAROPTIONL="X"/>
+   <parameter CLSNAME="ZCL_PROXY_INPUT" CMPNAME="ADD_MESSAGE" SCONAME="IV_MSGV4" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="7 " DISPID="0 " AUTHOR="ENGSWEEY" CREATEDON="20140411" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="ANY" PAROPTIONL="X"/>
+   <source>METHOD add_message.
+
+  DATA:
+   ls_bapiret2 LIKE LINE OF me-&gt;t_bapiret2.
+
+  ls_bapiret2-type        = iv_msgty.
+  ls_bapiret2-id          = iv_msgid.
+  ls_bapiret2-number      = iv_msgno.
+  ls_bapiret2-message_v1  = iv_msgv1.
+  ls_bapiret2-message_v2  = iv_msgv2.
+  ls_bapiret2-message_v3  = iv_msgv3.
+  ls_bapiret2-message_v4  = iv_msgv4.
+  APPEND ls_bapiret2 TO me-&gt;t_bapiret2.
+
+ENDMETHOD.</source>
+   <methodDocumentation/>
+  </method>
+  <method CLSNAME="ZCL_PROXY_INPUT" CMPNAME="COLLECT_FEH_AND_RAISE_ERROR" VERSION="1" LANGU="E" DESCRIPT="Collect messages into FEH and raise exception" EXPOSURE="1" STATE="1" EDITORDER="14 " DISPID="0 " AUTHOR="ENGSWEEY" CREATEDON="20140411" CHANGEDBY="ENGSWEEY" CHANGEDON="20140416" MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZCL_PROXY_INPUT" CMPNAME="COLLECT_FEH_AND_RAISE_ERROR" SCONAME="IV_ERROR_CAT" VERSION="1" LANGU="E" DESCRIPT="Error Category" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="ENGSWEEY" CREATEDON="20140411" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="ECH_DTE_ERROR_CATEGORY"/>
+   <parameter CLSNAME="ZCL_PROXY_INPUT" CMPNAME="COLLECT_FEH_AND_RAISE_ERROR" SCONAME="IV_OBJTYPE" VERSION="1" LANGU="E" DESCRIPT="Object Type" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="ENGSWEEY" CREATEDON="20140411" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="ECH_STR_OBJECT-OBJTYPE"/>
+   <parameter CLSNAME="ZCL_PROXY_INPUT" CMPNAME="COLLECT_FEH_AND_RAISE_ERROR" SCONAME="IV_OBJKEY" VERSION="1" LANGU="E" DESCRIPT="Object Key" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " AUTHOR="ENGSWEEY" CREATEDON="20140411" CHANGEDBY="ENGSWEEY" CHANGEDON="20140411" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="ANY"/>
+   <parameter CLSNAME="ZCL_PROXY_INPUT" CMPNAME="COLLECT_FEH_AND_RAISE_ERROR" SCONAME="IV_PRE_MAPPING" VERSION="1" LANGU="E" DESCRIPT="Error Occurred During Mapping" CMPTYPE="1" MTDTYPE="0" EDITORDER="4 " DISPID="0 " AUTHOR="ENGSWEEY" CREATEDON="20140411" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="FEH_BOOLEAN"/>
+   <exception CLSNAME="ZCL_PROXY_INPUT" CMPNAME="COLLECT_FEH_AND_RAISE_ERROR" SCONAME="CX_AI_APPLICATION_FAULT" VERSION="1" LANGU="E" DESCRIPT="Application Integration: Application Error" MTDTYPE="0" EDITORDER="1 " AUTHOR="ENGSWEEY" CREATEDON="20140411" CHANGEDON="00000000"/>
+   <source>METHOD collect_feh_and_raise_error.
+
+  DATA:
+    ls_main_object  TYPE ech_str_object,
+    ls_bapiret2     LIKE LINE OF me-&gt;t_bapiret2.
+  FIELD-SYMBOLS:
+    &lt;lfs_input&gt;     TYPE any.
+
+*-------------------------------------------------------------------------
+* (1) Collect the error message into FEH
+*-------------------------------------------------------------------------
+  ls_main_object-objcat  = &apos;1&apos;.           &quot;Business Object
+  ls_main_object-objtype = iv_objtype.    &quot;Based on /SAPPO/S_OBJECT
+  ls_main_object-objkey  = iv_objkey.
+
+* Set the first message from BAPIRET as the main message.
+  LOOP AT me-&gt;t_bapiret2 INTO ls_bapiret2 WHERE type = &apos;E&apos; OR type = &apos;A&apos;.
+    EXIT.
+  ENDLOOP.
+
+  TRY.
+      ASSIGN me-&gt;ref_input_data-&gt;* TO &lt;lfs_input&gt;.
+      me-&gt;o_feh-&gt;collect(  i_single_bo      = &lt;lfs_input&gt;
+                           i_error_category = iv_error_cat    &quot;Based on values in /SAPPO/SERR_CAT
+                           i_main_message   = ls_bapiret2
+                           i_messages       = me-&gt;t_bapiret2
+                           i_main_object    = ls_main_object
+                           i_pre_mapping    = iv_pre_mapping ).
+    CATCH cx_ai_system_fault .                          &quot;#EC NO_HANDLER
+  ENDTRY.
+
+*-------------------------------------------------------------------------
+* (2) Trigger application fault to enable ECH/FEH to be triggered
+*     Only from proxy execution and not from PPO retry
+*-------------------------------------------------------------------------
+  IF me-&gt;v_retry IS INITIAL.
+    cl_proxy_fault=&gt;raise( exception_class_name = me-&gt;v_exception_class
+                           bapireturn_tab       = me-&gt;t_bapiret2 ).
+  ENDIF.
+
+ENDMETHOD.</source>
+   <methodDocumentation/>
+  </method>
+  <method CLSNAME="ZCL_PROXY_INPUT" CMPNAME="EXECUTE_IN" VERSION="1" LANGU="E" DESCRIPT="Execute inbound processing for proxy" EXPOSURE="2" STATE="1" EDITORDER="2 " DISPID="0 " AUTHOR="ENGSWEEY" CREATEDON="20140408" CHANGEDBY="ENGSWEEY" CHANGEDON="20140408" MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZCL_PROXY_INPUT" CMPNAME="EXECUTE_IN" SCONAME="IS_INPUT" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="ENGSWEEY" CREATEDON="20140409" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="ANY"/>
+   <exception CLSNAME="ZCL_PROXY_INPUT" CMPNAME="EXECUTE_IN" SCONAME="CX_AI_APPLICATION_FAULT" VERSION="1" LANGU="E" DESCRIPT="Application Integration: Application Error" MTDTYPE="0" EDITORDER="1 " AUTHOR="ENGSWEEY" CREATEDON="20140408" CHANGEDON="00000000"/>
+   <source>METHOD execute_in.
+
+* Input data is stored as generic reference for subsequent accesses
+  GET REFERENCE OF is_input INTO me-&gt;ref_input_data.
+
+  me-&gt;init( ).
+
+  me-&gt;register_feh( ).
+
+  me-&gt;process_application( ).
+
+ENDMETHOD.</source>
+   <methodDocumentation/>
+  </method>
+  <method CLSNAME="ZCL_PROXY_INPUT" CMPNAME="GET_INPUT_DATA" VERSION="1" LANGU="E" DESCRIPT="Get and dereference input data" EXPOSURE="1" STATE="1" EDITORDER="12 " DISPID="0 " AUTHOR="ENGSWEEY" CREATEDON="20140414" CHANGEDBY="ENGSWEEY" CHANGEDON="20140416" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZCL_PROXY_INPUT" CMPNAME="GET_INPUT_DATA" SCONAME="ES_INPUT" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="ENGSWEEY" CREATEDON="20140414" CHANGEDBY="ENGSWEEY" CHANGEDON="20140416" PARDECLTYP="1" PARPASSTYP="1" TYPTYPE="1" TYPE="ANY"/>
+   <source>METHOD GET_INPUT_DATA.
+
+  FIELD-SYMBOLS:
+    &lt;lfs_input&gt; TYPE any.
+
+  ASSIGN me-&gt;ref_input_data-&gt;* TO &lt;lfs_input&gt;.
+
+  es_input = &lt;lfs_input&gt;.
+
+ENDMETHOD.</source>
+   <methodDocumentation/>
+  </method>
+  <method CLSNAME="ZCL_PROXY_INPUT" CMPNAME="GET_PPO_HANDLER" VERSION="1" LANGU="E" DESCRIPT="Retrieve the corresponding PPO handling class" EXPOSURE="0" STATE="1" EDITORDER="15 " DISPID="0 " AUTHOR="ENGSWEEY" CREATEDON="20140415" CHANGEDBY="ENGSWEEY" CHANGEDON="20140416" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZCL_PROXY_INPUT" CMPNAME="GET_PPO_HANDLER" SCONAME="IV_ERROR_OBJECT_ID" VERSION="1" LANGU="E" DESCRIPT="Error Object ID" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="ENGSWEEY" CREATEDON="20140415" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="ECH_DTE_ERROR_OBJECT_ID"/>
+   <parameter CLSNAME="ZCL_PROXY_INPUT" CMPNAME="GET_PPO_HANDLER" SCONAME="EV_EXECUTION_FAILED" VERSION="1" LANGU="E" DESCRIPT="Checkbox" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="ENGSWEEY" CREATEDON="20140415" CHANGEDON="00000000" PARDECLTYP="1" PARPASSTYP="1" TYPTYPE="1" TYPE="XFELD"/>
+   <parameter CLSNAME="ZCL_PROXY_INPUT" CMPNAME="GET_PPO_HANDLER" SCONAME="ES_RETURN_MESSAGE" VERSION="1" LANGU="E" DESCRIPT="Return Parameter" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " AUTHOR="ENGSWEEY" CREATEDON="20140415" CHANGEDON="00000000" PARDECLTYP="1" PARPASSTYP="1" TYPTYPE="1" TYPE="BAPIRET2"/>
+   <parameter CLSNAME="ZCL_PROXY_INPUT" CMPNAME="GET_PPO_HANDLER" SCONAME="EO_HANDLER" VERSION="1" LANGU="E" DESCRIPT="Framework class for proxy with FEH" CMPTYPE="1" MTDTYPE="0" EDITORDER="4 " DISPID="0 " AUTHOR="ENGSWEEY" CREATEDON="20140415" CHANGEDBY="ENGSWEEY" CHANGEDON="20140415" PARDECLTYP="1" PARPASSTYP="1" TYPTYPE="3" TYPE="ZCL_PROXY_INPUT"/>
+   <source>METHOD get_ppo_handler.
+
+  DATA:
+    lv_order_key    TYPE /sappo/str_order_key,
+    ls_order_detail TYPE /sappo/str_order_detail,
+    lv_classname    TYPE string.
+
+  CLEAR: ev_execution_failed, es_return_message, eo_handler.
+
+  lv_order_key-order_id = iv_error_object_id.
+
+* Retrieve the order details based on Message ID
+  CALL FUNCTION &apos;/SAPPO/MAPI_ORDER_GET_DETAIL&apos;
+    EXPORTING
+      i_str_order_key    = lv_order_key
+    IMPORTING
+      e_str_order_detail = ls_order_detail
+    EXCEPTIONS
+      luw_inconsistent   = 1
+      not_found          = 2
+      no_authority       = 3
+      OTHERS             = 4.
+  IF sy-subrc &lt;&gt; 0.
+    es_return_message-type        = sy-msgty.
+    es_return_message-id          = sy-msgid.
+    es_return_message-number      = sy-msgno.
+    es_return_message-message_v1  = sy-msgv1.
+    es_return_message-message_v2  = sy-msgv2.
+    es_return_message-message_v3  = sy-msgv3.
+    es_return_message-message_v4  = sy-msgv4.
+  ELSE.
+*   Based on PPO business process, retrieve the ECH processing class
+*   and instantiate it for subsequent PPO-based processing (retry, confirm, fail)
+    SELECT a~action_class UP TO 1 ROWS
+           INTO lv_classname
+           FROM echc_processes AS a
+           JOIN echc_pp_process AS b
+             ON a~component = b~component
+             AND a~process  = b~process
+           WHERE b~pp_component = ls_order_detail-component
+             AND b~pp_process   = ls_order_detail-business_process.
+    ENDSELECT.
+    IF sy-subrc = 0.
+      TRY .
+          CREATE OBJECT eo_handler TYPE (lv_classname).
+        CATCH cx_sy_create_object_error.
+          es_return_message-type        = &apos;E&apos;.
+          es_return_message-id          = &apos;AD&apos;.
+          es_return_message-number      = &apos;010&apos;.
+          es_return_message-message_v1  = &apos;Error creating object&apos;.
+          es_return_message-message_v2  = lv_classname.
+      ENDTRY.
+    ELSE.
+      es_return_message-type        = &apos;E&apos;.
+      es_return_message-id          = &apos;AD&apos;.
+      es_return_message-number      = &apos;010&apos;.
+      es_return_message-message_v1  = &apos;PPO configuration not found&apos;.
+      es_return_message-message_v2  = ls_order_detail-component.
+      es_return_message-message_v3  = ls_order_detail-business_process.
+    ENDIF.
+  ENDIF.
+
+  IF es_return_message IS NOT INITIAL.
+    ev_execution_failed = &apos;X&apos;.
+  ENDIF.
+
+ENDMETHOD.</source>
+   <methodDocumentation/>
+  </method>
+  <method CLSNAME="ZCL_PROXY_INPUT" CMPNAME="INIT" VERSION="1" LANGU="E" DESCRIPT="Initialization" EXPOSURE="1" STATE="1" EDITORDER="6 " DISPID="0 " AUTHOR="ENGSWEEY" CREATEDON="20140414" CHANGEDBY="ENGSWEEY" CHANGEDON="20140416" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
+   <source>METHOD init.
+
+  DATA:
+    lv_proxy_class  TYPE seoclsname,
+    lv_proxy_method TYPE seocmpname.
+
+  TRY .
+      me-&gt;o_server_context    = cl_proxy_access=&gt;get_server_context( ).
+      me-&gt;o_payload_protocol ?= me-&gt;o_server_context-&gt;get_protocol( if_wsprotocol=&gt;payload ).
+      cl_proxy_access=&gt;get_inbound_message_key( IMPORTING message_class  = lv_proxy_class
+                                                          message_method = lv_proxy_method ).
+    CATCH cx_ai_system_fault.                           &quot;#EC NO_HANDLER
+  ENDTRY.
+
+* Retrieve the exception class for fault message associated to current proxy
+  SELECT sconame UP TO 1 ROWS
+         FROM seosubco
+         INTO me-&gt;v_exception_class
+         WHERE clsname = lv_proxy_class
+         AND   cmpname = lv_proxy_method
+         AND   cmptype = &apos;1&apos;    &quot;Method
+         AND   scotype = &apos;1&apos;.   &quot;Exception
+  ENDSELECT.
+
+  SET UPDATE TASK LOCAL.
+
+ENDMETHOD.</source>
+   <methodDocumentation/>
+  </method>
+  <method CLSNAME="ZCL_PROXY_INPUT" CMPNAME="PPO_FAIL" VERSION="1" LANGU="E" DESCRIPT="Discard" EXPOSURE="2" STATE="1" EDITORDER="5 " DISPID="0 " AUTHOR="ENGSWEEY" CREATEDON="20140415" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZCL_PROXY_INPUT" CMPNAME="PPO_FAIL" SCONAME="I_DATA" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="ENGSWEEY" CREATEDON="20140415" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="3" TYPE="STRING"/>
+   <parameter CLSNAME="ZCL_PROXY_INPUT" CMPNAME="PPO_FAIL" SCONAME="I_ERROR_OBJECT_ID" VERSION="1" LANGU="E" DESCRIPT="Error Object ID" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="ENGSWEEY" CREATEDON="20140415" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="ECH_DTE_ERROR_OBJECT_ID" PAROPTIONL="X"/>
+   <parameter CLSNAME="ZCL_PROXY_INPUT" CMPNAME="PPO_FAIL" SCONAME="I_MAIN_ERROR" VERSION="1" LANGU="E" DESCRIPT="Return Parameter" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " AUTHOR="ENGSWEEY" CREATEDON="20140415" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="BAPIRET2"/>
+   <parameter CLSNAME="ZCL_PROXY_INPUT" CMPNAME="PPO_FAIL" SCONAME="I_MESSAGES" VERSION="1" LANGU="E" DESCRIPT="Return parameter table" CMPTYPE="1" MTDTYPE="0" EDITORDER="4 " DISPID="0 " AUTHOR="ENGSWEEY" CREATEDON="20140415" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="BAPIRET2_T"/>
+   <parameter CLSNAME="ZCL_PROXY_INPUT" CMPNAME="PPO_FAIL" SCONAME="I_ERROR_CATEGORY" VERSION="1" LANGU="E" DESCRIPT="Error Category" CMPTYPE="1" MTDTYPE="0" EDITORDER="5 " DISPID="0 " AUTHOR="ENGSWEEY" CREATEDON="20140415" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="ECH_DTE_ERROR_CATEGORY"/>
+   <parameter CLSNAME="ZCL_PROXY_INPUT" CMPNAME="PPO_FAIL" SCONAME="E_EXECUTION_FAILED" VERSION="1" LANGU="E" DESCRIPT="Checkbox" CMPTYPE="1" MTDTYPE="0" EDITORDER="6 " DISPID="0 " AUTHOR="ENGSWEEY" CREATEDON="20140415" CHANGEDON="00000000" PARDECLTYP="1" PARPASSTYP="1" TYPTYPE="1" TYPE="XFELD"/>
+   <parameter CLSNAME="ZCL_PROXY_INPUT" CMPNAME="PPO_FAIL" SCONAME="E_RETURN_MESSAGE" VERSION="1" LANGU="E" DESCRIPT="Return Parameter" CMPTYPE="1" MTDTYPE="0" EDITORDER="7 " DISPID="0 " AUTHOR="ENGSWEEY" CREATEDON="20140415" CHANGEDON="00000000" PARDECLTYP="1" PARPASSTYP="1" TYPTYPE="1" TYPE="BAPIRET2"/>
+   <source>METHOD ppo_fail.
+
+  cl_feh_registration=&gt;s_fail( EXPORTING i_data             = i_data
+                               IMPORTING e_execution_failed = e_execution_failed
+                                         e_return_message   = e_return_message ).
+
+ENDMETHOD.</source>
+   <methodDocumentation/>
+  </method>
+  <method CLSNAME="ZCL_PROXY_INPUT" CMPNAME="PPO_FINISH" VERSION="1" LANGU="E" DESCRIPT="Confirm" EXPOSURE="2" STATE="1" EDITORDER="4 " DISPID="0 " AUTHOR="ENGSWEEY" CREATEDON="20140415" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZCL_PROXY_INPUT" CMPNAME="PPO_FINISH" SCONAME="I_DATA" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="ENGSWEEY" CREATEDON="20140415" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="3" TYPE="STRING"/>
+   <parameter CLSNAME="ZCL_PROXY_INPUT" CMPNAME="PPO_FINISH" SCONAME="I_ERROR_OBJECT_ID" VERSION="1" LANGU="E" DESCRIPT="Error Object ID" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="ENGSWEEY" CREATEDON="20140415" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="ECH_DTE_ERROR_OBJECT_ID" PAROPTIONL="X"/>
+   <parameter CLSNAME="ZCL_PROXY_INPUT" CMPNAME="PPO_FINISH" SCONAME="E_EXECUTION_FAILED" VERSION="1" LANGU="E" DESCRIPT="Checkbox" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " AUTHOR="ENGSWEEY" CREATEDON="20140415" CHANGEDON="00000000" PARDECLTYP="1" PARPASSTYP="1" TYPTYPE="1" TYPE="XFELD"/>
+   <parameter CLSNAME="ZCL_PROXY_INPUT" CMPNAME="PPO_FINISH" SCONAME="E_RETURN_MESSAGE" VERSION="1" LANGU="E" DESCRIPT="Return Parameter" CMPTYPE="1" MTDTYPE="0" EDITORDER="4 " DISPID="0 " AUTHOR="ENGSWEEY" CREATEDON="20140415" CHANGEDON="00000000" PARDECLTYP="1" PARPASSTYP="1" TYPTYPE="1" TYPE="BAPIRET2"/>
+   <source>METHOD ppo_finish.
+
+  cl_feh_registration=&gt;s_finish( EXPORTING i_data             = i_data
+                                 IMPORTING e_execution_failed = e_execution_failed
+                                           e_return_message   = e_return_message ).
+
+ENDMETHOD.</source>
+   <methodDocumentation/>
+  </method>
+  <method CLSNAME="ZCL_PROXY_INPUT" CMPNAME="PPO_RETRY" VERSION="1" LANGU="E" DESCRIPT="Repeat" EXPOSURE="2" STATE="1" EDITORDER="3 " DISPID="0 " AUTHOR="ENGSWEEY" CREATEDON="20140415" CHANGEDBY="ENGSWEEY" CHANGEDON="20140415" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZCL_PROXY_INPUT" CMPNAME="PPO_RETRY" SCONAME="I_ERROR_OBJECT_ID" VERSION="1" LANGU="E" DESCRIPT="Error Object ID" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="ENGSWEEY" CREATEDON="20140415" CHANGEDBY="ENGSWEEY" CHANGEDON="20140415" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="ECH_DTE_ERROR_OBJECT_ID"/>
+   <parameter CLSNAME="ZCL_PROXY_INPUT" CMPNAME="PPO_RETRY" SCONAME="I_DATA" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="ENGSWEEY" CREATEDON="20140415" CHANGEDBY="ENGSWEEY" CHANGEDON="20140415" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="3" TYPE="STRING"/>
+   <parameter CLSNAME="ZCL_PROXY_INPUT" CMPNAME="PPO_RETRY" SCONAME="E_EXECUTION_FAILED" VERSION="1" LANGU="E" DESCRIPT="Checkbox" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " AUTHOR="ENGSWEEY" CREATEDON="20140415" CHANGEDBY="ENGSWEEY" CHANGEDON="20140415" PARDECLTYP="1" PARPASSTYP="1" TYPTYPE="1" TYPE="XFELD"/>
+   <parameter CLSNAME="ZCL_PROXY_INPUT" CMPNAME="PPO_RETRY" SCONAME="E_RETURN_MESSAGE" VERSION="1" LANGU="E" DESCRIPT="Return Parameter" CMPTYPE="1" MTDTYPE="0" EDITORDER="4 " DISPID="0 " AUTHOR="ENGSWEEY" CREATEDON="20140415" CHANGEDBY="ENGSWEEY" CHANGEDON="20140415" PARDECLTYP="1" PARPASSTYP="1" TYPTYPE="1" TYPE="BAPIRET2"/>
+   <source>METHOD ppo_retry.
+
+  CLEAR: e_execution_failed, e_return_message.
+
+  me-&gt;o_feh = cl_feh_registration=&gt;s_retry( i_error_object_id ).
+
+  me-&gt;o_feh-&gt;retrieve_data( EXPORTING i_data                  = i_data                &quot;XML data
+                            IMPORTING e_pre_mapping_data_ref  = me-&gt;ref_input_data ). &quot;DDIC data
+
+  me-&gt;v_retry = &apos;X&apos;.
+
+  me-&gt;process_application( ).
+
+  me-&gt;o_feh-&gt;resolve_retry( ).
+
+ENDMETHOD.</source>
+   <methodDocumentation/>
+  </method>
+  <method CLSNAME="ZCL_PROXY_INPUT" CMPNAME="PROCESS_APPLICATION" VERSION="1" LANGU="E" DESCRIPT="Processing for the application object" EXPOSURE="1" STATE="1" EDITORDER="8 " DISPID="0 " AUTHOR="ENGSWEEY" CREATEDON="20140416" CHANGEDBY="ENGSWEEY" CHANGEDON="20140416" MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
+   <exception CLSNAME="ZCL_PROXY_INPUT" CMPNAME="PROCESS_APPLICATION" SCONAME="CX_AI_APPLICATION_FAULT" VERSION="1" LANGU="E" DESCRIPT="Application Integration: Application Error" MTDTYPE="0" EDITORDER="1 " AUTHOR="ENGSWEEY" CREATEDON="20140416" CHANGEDON="00000000"/>
+   <source>METHOD process_application.
+
+  DATA:
+    lo_exception TYPE REF TO zcx_proxy_process_error.
+
+  TRY .
+      me-&gt;validation_check( ).
+
+      me-&gt;process_input_data( ).
+
+      me-&gt;update_logs( &apos;S&apos; ).
+
+    CATCH zcx_proxy_process_error INTO lo_exception.
+      me-&gt;update_logs( &apos;E&apos; ).
+
+      me-&gt;collect_feh_and_raise_error( iv_error_cat   = lo_exception-&gt;error_cat
+                                       iv_objtype     = lo_exception-&gt;objtype
+                                       iv_objkey      = lo_exception-&gt;objkey
+                                       iv_pre_mapping = lo_exception-&gt;pre_mapping ).
+  ENDTRY.
+
+ENDMETHOD.</source>
+   <methodDocumentation/>
+  </method>
+  <method CLSNAME="ZCL_PROXY_INPUT" CMPNAME="PROCESS_INPUT_DATA" VERSION="1" LANGU="E" DESCRIPT="*** Process the message - To be implemented in subclass ***" EXPOSURE="1" STATE="1" EDITORDER="10 " DISPID="0 " AUTHOR="ENGSWEEY" CREATEDON="20140416" CHANGEDBY="ENGSWEEY" CHANGEDON="20140416" MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
+   <exception CLSNAME="ZCL_PROXY_INPUT" CMPNAME="PROCESS_INPUT_DATA" SCONAME="ZCX_PROXY_PROCESS_ERROR" VERSION="1" LANGU="E" DESCRIPT="Proxy Processing Error" MTDTYPE="0" EDITORDER="1 " AUTHOR="ENGSWEEY" CREATEDON="20140416" CHANGEDBY="ENGSWEEY" CHANGEDON="20140416"/>
+   <source>method PROCESS_INPUT_DATA.
+endmethod.</source>
+   <methodDocumentation/>
+  </method>
+  <method CLSNAME="ZCL_PROXY_INPUT" CMPNAME="REGISTER_FEH" VERSION="1" LANGU="E" DESCRIPT="Initialize registration to FEH" EXPOSURE="1" STATE="1" EDITORDER="7 " DISPID="0 " AUTHOR="ENGSWEEY" CREATEDON="20140408" CHANGEDBY="ENGSWEEY" CHANGEDON="20140416" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
+   <source>METHOD register_feh.
+
+  TRY.
+      me-&gt;o_feh = cl_feh_registration=&gt;s_initialize( ).
+    CATCH cx_ai_system_fault.                           &quot;#EC NO_HANDLER
+  ENDTRY.
+
+ENDMETHOD.</source>
+   <methodDocumentation/>
+  </method>
+  <method CLSNAME="ZCL_PROXY_INPUT" CMPNAME="S_GET_INSTANCE" VERSION="1" LANGU="E" DESCRIPT="Return new or active instance of the Framework object" EXPOSURE="2" STATE="1" EDITORDER="1 " DISPID="0 " AUTHOR="ENGSWEEY" CREATEDON="20140415" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="1" MTDNEWEXC="X" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZCL_PROXY_INPUT" CMPNAME="S_GET_INSTANCE" SCONAME="IV_ECH_COMPONENT" VERSION="1" LANGU="E" DESCRIPT="Component" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="ENGSWEEY" CREATEDON="20140415" CHANGEDBY="ENGSWEEY" CHANGEDON="20140415" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="ECH_DTE_COMPONENT"/>
+   <parameter CLSNAME="ZCL_PROXY_INPUT" CMPNAME="S_GET_INSTANCE" SCONAME="IV_ECH_PROCESS" VERSION="1" LANGU="E" DESCRIPT="Business Process" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " AUTHOR="ENGSWEEY" CREATEDON="20140415" CHANGEDBY="ENGSWEEY" CHANGEDON="20140415" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="ECH_DTE_PROCESS"/>
+   <parameter CLSNAME="ZCL_PROXY_INPUT" CMPNAME="S_GET_INSTANCE" SCONAME="RO_INTERFACE" VERSION="1" LANGU="E" DESCRIPT="Framework class for proxy with FEH" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " AUTHOR="ENGSWEEY" CREATEDON="20140415" CHANGEDBY="ENGSWEEY" CHANGEDON="20140415" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="ZCL_PROXY_INPUT"/>
+   <source>METHOD s_get_instance.
+
+  DATA:
+    lv_classname TYPE string.
+
+  IF o_interface IS NOT BOUND.
+*   Dynamically determine the processing &amp; fault class from config table
+    SELECT SINGLE action_class
+           FROM echc_processes
+           INTO lv_classname
+           WHERE component = iv_ech_component
+             AND process   = iv_ech_process.
+
+    CREATE OBJECT o_interface TYPE (lv_classname).
+  ENDIF.
+  ro_interface = o_interface.
+
+ENDMETHOD.</source>
+   <methodDocumentation/>
+  </method>
+  <method CLSNAME="ZCL_PROXY_INPUT" CMPNAME="UPDATE_LOGS" VERSION="1" LANGU="E" DESCRIPT="Update custom logs" EXPOSURE="1" STATE="1" EDITORDER="11 " DISPID="0 " AUTHOR="ENGSWEEY" CREATEDON="20140416" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZCL_PROXY_INPUT" CMPNAME="UPDATE_LOGS" SCONAME="IV_PROCESSING_STATUS" VERSION="1" LANGU="E" DESCRIPT="S = Success, E = Error" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="ENGSWEEY" CREATEDON="20140416" CHANGEDON="00000000" PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="CHAR1"/>
+   <source>METHOD update_logs.
+
+* Enter custom logging here
+  CASE iv_processing_status.
+    WHEN &apos;S&apos;.
+
+    WHEN &apos;E&apos;.
+
+  ENDCASE.
+
+ENDMETHOD.</source>
+   <methodDocumentation/>
+  </method>
+  <method CLSNAME="ZCL_PROXY_INPUT" CMPNAME="VALIDATION_CHECK" VERSION="1" LANGU="E" DESCRIPT="Validation checks" EXPOSURE="1" STATE="1" EDITORDER="9 " DISPID="0 " AUTHOR="ENGSWEEY" CREATEDON="20140416" CHANGEDBY="ENGSWEEY" CHANGEDON="20140416" MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
+   <exception CLSNAME="ZCL_PROXY_INPUT" CMPNAME="VALIDATION_CHECK" SCONAME="ZCX_PROXY_PROCESS_ERROR" VERSION="1" LANGU="E" DESCRIPT="Proxy Processing Error" MTDTYPE="0" EDITORDER="1 " AUTHOR="ENGSWEEY" CREATEDON="20140416" CHANGEDON="00000000"/>
+   <source>METHOD validation_check.
+
+* Enter custom validation checks here
+
+ENDMETHOD.</source>
+   <methodDocumentation/>
+  </method>
+ </CLAS>
+ <CLAS CLSNAME="ZCL_PROXY_INPUT_PO" VERSION="1" LANGU="E" DESCRIPT="PO proxy class" UUID="534C1009EF091250E10080000AD00C21" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" AUTHOR="ENGSWEEY" CREATEDON="20140415" CHANGEDON="20140416" CHGDANYON="00000000" CLSFINAL="X" CLSCCINCL="X" FIXPT="X" UNICODE="X" R3RELEASE="702" CLSBCCAT="00" DURATION_TYPE="0 " RISK_LEVEL="0 " REFCLSNAME="ZCL_PROXY_INPUT" CHANGEDBY="ENGSWEEY">
+  <publicSection>class ZCL_PROXY_INPUT_PO definition
+  public
+  inheriting from ZCL_PROXY_INPUT
+  final
+  create public .
+
+public section.
+*&quot;* public components of class ZCL_PROXY_INPUT_PO
+*&quot;* do not include other source files here!!!</publicSection>
+  <protectedSection>protected section.
+*&quot;* protected components of class ZCL_PROXY_INPUT_PO
+*&quot;* do not include other source files here!!!
+
+  methods CALL_PO_BAPI
+    returning
+      value(RT_RETURN) type BAPIRET2_T .
+
+  methods PROCESS_INPUT_DATA
+    redefinition .</protectedSection>
+  <privateSection>private section.
+*&quot;* private components of class ZCL_PROXY_INPUT_PO
+*&quot;* do not include other source files here!!!</privateSection>
+  <localImplementation>*&quot;* use this source file for the definition and implementation of
+*&quot;* local helper classes, interface definitions and type
+*&quot;* declarations</localImplementation>
+  <localTypes>*&quot;* use this source file for any type of declarations (class
+*&quot;* definitions, interfaces or type declarations) you need for
+*&quot;* components in the private section</localTypes>
+  <localMacros>*&quot;* use this source file for any macro definitions you need
+*&quot;* in the implementation part of the class</localMacros>
+  <textPool/>
+  <classDocumentation/>
+  <inheritance CLSNAME="ZCL_PROXY_INPUT_PO" REFCLSNAME="ZCL_PROXY_INPUT" VERSION="1" STATE="1" AUTHOR="ENGSWEEY" CREATEDON="20140415" CHANGEDBY="ENGSWEEY" CHANGEDON="20140416">
+   <redefinition CLSNAME="ZCL_PROXY_INPUT_PO" REFCLSNAME="ZCL_PROXY_INPUT" VERSION="1" MTDNAME="PROCESS_INPUT_DATA" EXPOSURE="1"/>
+  </inheritance>
+  <method CLSNAME="ZCL_PROXY_INPUT_PO" CMPNAME="CALL_PO_BAPI" VERSION="1" LANGU="E" DESCRIPT="Populate BAPI structure and call" EXPOSURE="1" STATE="1" EDITORDER="1 " DISPID="0 " AUTHOR="ENGSWEEY" CREATEDON="20140416" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" R3RELEASE="702" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZCL_PROXY_INPUT_PO" CMPNAME="CALL_PO_BAPI" SCONAME="RT_RETURN" VERSION="1" LANGU="E" DESCRIPT="Return parameter table" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " AUTHOR="ENGSWEEY" CREATEDON="20140416" CHANGEDON="00000000" PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="1" TYPE="BAPIRET2_T"/>
+   <source>METHOD call_po_bapi.
+
+  DATA:
+    ls_input     TYPE zesymt_purchase_order,
+    ls_poheader  TYPE bapimepoheader,
+    ls_poheaderx TYPE bapimepoheaderx,
+    lt_poitem    TYPE STANDARD TABLE OF bapimepoitem,
+    lt_poitemx   TYPE STANDARD TABLE OF bapimepoitemx,
+    ls_poitem    LIKE LINE OF lt_poitem,
+    ls_poitemx   LIKE LINE OF lt_poitemx,
+    ls_item      LIKE LINE OF ls_input-mt_purchase_order-document-items.
+
+  me-&gt;get_input_data( IMPORTING es_input = ls_input ).
+
+  ls_poheader-comp_code = ls_input-mt_purchase_order-document-header-company_code.
+  ls_poheader-doc_type  = ls_input-mt_purchase_order-document-header-document_type.
+  ls_poheader-vendor    = ls_input-mt_purchase_order-document-header-vendor.
+  ls_poheader-purch_org = ls_input-mt_purchase_order-document-header-purch_org.
+  ls_poheader-pur_group = ls_input-mt_purchase_order-document-header-purch_group.
+  ls_poheader-ref_1     = ls_input-mt_purchase_order-document-header-your_reference.
+
+  ls_poheaderx-comp_code = &apos;X&apos;.
+  ls_poheaderx-doc_type  = &apos;X&apos;.
+  ls_poheaderx-vendor    = &apos;X&apos;.
+  ls_poheaderx-purch_org = &apos;X&apos;.
+  ls_poheaderx-pur_group = &apos;X&apos;.
+  ls_poheaderx-ref_1     = &apos;X&apos;.
+
+  LOOP AT ls_input-mt_purchase_order-document-items INTO ls_item.
+    ls_poitem-po_item   = ls_item-item_no.
+    ls_poitem-material  = ls_item-material.
+    ls_poitem-plant     = ls_item-plant.
+    ls_poitem-stge_loc  = ls_item-storage_location.
+    ls_poitem-quantity  = ls_item-quantity.
+    APPEND ls_poitem TO lt_poitem.
+
+    ls_poitemx-po_item   = ls_item-item_no.
+    ls_poitemx-material  = &apos;X&apos;.
+    ls_poitemx-plant     = &apos;X&apos;.
+    ls_poitemx-stge_loc  = &apos;X&apos;.
+    ls_poitemx-quantity  = &apos;X&apos;.
+    APPEND ls_poitemx TO lt_poitemx.
+  ENDLOOP.
+
+  CALL FUNCTION &apos;BAPI_PO_CREATE1&apos;
+    EXPORTING
+      poheader  = ls_poheader
+      poheaderx = ls_poheaderx
+    TABLES
+      return    = rt_return
+      poitem    = lt_poitem
+      poitemx   = lt_poitemx.
+
+ENDMETHOD.</source>
+   <methodDocumentation/>
+  </method>
+  <method CLSNAME="ZCL_PROXY_INPUT" CMPNAME="PROCESS_INPUT_DATA" VERSION="0" EXPOSURE="0" STATE="0" EDITORDER="0 " DISPID="0 " CREATEDON="00000000" CHANGEDON="00000000" MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+   <source>METHOD process_input_data.
+
+  DATA:
+    lt_return LIKE me-&gt;t_bapiret2,
+    ls_input  TYPE zesymt_purchase_order.
+
+  me-&gt;get_input_data( IMPORTING es_input = ls_input ).
+
+  lt_return = me-&gt;call_po_bapi( ).
+
+  LOOP AT lt_return TRANSPORTING NO FIELDS WHERE type = &apos;A&apos; OR type = &apos;E&apos;.
+    EXIT.
+  ENDLOOP.
+  IF sy-subrc = 0.
+    me-&gt;t_bapiret2 = lt_return.
+    RAISE EXCEPTION TYPE zcx_proxy_process_error
+      EXPORTING
+        error_cat   = &apos;PRE&apos;             &quot;Processing Error
+        objtype     = &apos;BUS2012&apos;         &quot;Purchase Order
+        objkey      = ls_input-mt_purchase_order-document-header-your_reference
+        pre_mapping = &apos;X&apos;.
+  ENDIF.
+
+ENDMETHOD.</source>
+   <methodDocumentation/>
+  </method>
+ </CLAS>
+</nugget>
