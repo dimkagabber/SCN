@@ -1,0 +1,12 @@
+METHOD zesyii_si_ib_a_purchase_order~si_ib_a_purchase_order_create.
+*** **** INSERT IMPLEMENTATION HERE **** ***
+
+  DATA:
+    lo_intf TYPE REF TO zcl_proxy_input.
+
+  lo_intf ?= zcl_proxy_input=>s_get_instance( iv_ech_component = 'ZFEH_TEST'
+                                              iv_ech_process   = 'ZECH_PO' ).
+
+  lo_intf->execute_in( input ).
+
+ENDMETHOD.
