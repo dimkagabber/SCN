@@ -1,0 +1,380 @@
+class ZCL_BC_BDC definition
+  public
+  final
+  create private .
+
+public section.
+*"* public components of class ZCL_BC_BDC
+*"* do not include other source files here!!!
+
+  constants C_MSG_TYPE_INFO type C value 'I'. "#EC NOTEXT
+  constants C_MSG_TYPE_SUCCESS type C value 'S'. "#EC NOTEXT
+  constants C_MSG_TYPE_ERROR type C value 'E'. "#EC NOTEXT
+  constants C_MSG_TYPE_WARNING type C value 'W'. "#EC NOTEXT
+  constants C_MSG_TYPE_ABEND type C value 'A'. "#EC NOTEXT
+
+  class-methods S_INSTANTIATE
+    importing
+      !I_BDC_TYPE type C
+      !I_TCODE type TCODE
+      !I_BDC_MODE type C default 'N'
+      !I_UPD_MODE type C default 'S'
+      !I_GROUP type APQI-GROUPID optional
+      !I_USER type APQI-USERID default SY-UNAME
+      !I_KEEP type APQI-QERASE optional
+      !I_HOLDDATE type APQI-STARTDATE optional
+    returning
+      value(R_BDC) type ref to ZCL_BC_BDC .
+  class-methods S_FREE_INSTANCE .
+  methods ADD_FIELD
+    importing
+      !I_FLD type ANY
+      !I_VAL type ANY
+      !I_CONV type CHAR1 optional .
+  methods ADD_SCREEN
+    importing
+      !I_REPID type ANY
+      !I_DYNNR type ANY .
+  methods PROCESS
+    exporting
+      !E_SUBRC type SY-SUBRC
+      !E_MESSAGES type TAB_BDCMSGCOLL
+    raising
+      ZCX_BATCH_INPUT_ERROR .
+  methods CLEAR_BDC_DATA .
+*"* protected components of class ZCL_BC_BDC
+*"* do not include other source files here!!!
+protected section.
+private section.
+*"* private components of class ZCL_BC_BDC
+*"* do not include other source files here!!!
+
+  class-data BDC type ref to ZCL_BC_BDC .
+  data BDCDATA type BDCDATA_TAB .
+  data BDC_TYPE type CHAR2 .
+  data TCODE type TCODE .
+  data CT_BDC_MODE type C .
+  data CT_UPD_MODE type C .
+  data BI_GROUP type APQI-GROUPID .
+  data BI_USER type APQI-USERID .
+  data BI_KEEP type APQI-QERASE .
+  data BI_HOLDDATE type APQI-STARTDATE .
+
+  methods CONSTRUCTOR
+    importing
+      !I_BDC_TYPE type C
+      !I_TCODE type TCODE
+      !I_BDC_MODE type C
+      !I_UPD_MODE type C
+      !I_GROUP type APQI-GROUPID
+      !I_USER type APQI-USERID
+      !I_KEEP type APQI-QERASE
+      !I_HOLDDATE type APQI-STARTDATE .
+  methods CALL_TRANSACTION
+    exporting
+      !E_SUBRC type SY-SUBRC
+      !E_MESSAGES type TAB_BDCMSGCOLL .
+  methods CREATE_BATCH_INPUT_SESS
+    raising
+      ZCX_BATCH_INPUT_ERROR .
+ENDCLASS.
+
+
+
+CLASS ZCL_BC_BDC IMPLEMENTATION.
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Instance Public Method ZCL_BC_BDC->ADD_FIELD
+* +-------------------------------------------------------------------------------------------------+
+* | [--->] I_FLD                          TYPE        ANY
+* | [--->] I_VAL                          TYPE        ANY
+* | [--->] I_CONV                         TYPE        CHAR1(optional)
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+METHOD add_field.
+*----------------------------------------------------------------------*
+*       Insert field in BDC screen
+*
+* Additional functionality if IV_CONV is populated as below:-
+*  D - Convert date from YYYYMMDD format to output format
+*  S - Allow initial values to be populated in BDC
+*----------------------------------------------------------------------*
+  DATA:
+    bdcdata LIKE LINE OF me->bdcdata.
+
+* Initial values are skipped unless suppress 'S' is used
+  IF i_val IS INITIAL AND i_conv <> 'S'.
+    RETURN.
+  ENDIF.
+
+  CASE i_conv.
+    WHEN 'D'.
+      CALL FUNCTION 'CONVERSION_EXIT_MODAT_OUTPUT'
+        EXPORTING
+          input  = i_val
+        IMPORTING
+          output = bdcdata-fval.
+
+    WHEN OTHERS.
+      bdcdata-fval = i_val.
+
+  ENDCASE.
+
+  bdcdata-fnam = i_fld.
+  APPEND bdcdata TO me->bdcdata.
+
+ENDMETHOD.
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Instance Public Method ZCL_BC_BDC->ADD_SCREEN
+* +-------------------------------------------------------------------------------------------------+
+* | [--->] I_REPID                        TYPE        ANY
+* | [--->] I_DYNNR                        TYPE        ANY
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+method ADD_SCREEN.
+*----------------------------------------------------------------------*
+*       Start new BDC screen
+*----------------------------------------------------------------------*
+  DATA:
+    bdcdata LIKE LINE OF me->bdcdata.
+
+  bdcdata-program  = i_repid.
+  bdcdata-dynpro   = i_dynnr.
+  bdcdata-dynbegin = 'X'.
+  APPEND bdcdata TO me->bdcdata.
+
+endmethod.
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Instance Private Method ZCL_BC_BDC->CALL_TRANSACTION
+* +-------------------------------------------------------------------------------------------------+
+* | [<---] E_SUBRC                        TYPE        SY-SUBRC
+* | [<---] E_MESSAGES                     TYPE        TAB_BDCMSGCOLL
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+METHOD CALL_TRANSACTION.
+  DATA:
+    bdc_subrc LIKE sy-subrc.
+
+  CLEAR: e_subrc, e_messages.
+
+*-----------------------------------------------------------------------
+* Call BDC
+*-----------------------------------------------------------------------
+* Call the transaction and collect the messages
+  CALL TRANSACTION me->tcode
+                   USING  me->bdcdata
+                   MODE   me->ct_bdc_mode
+                   UPDATE me->ct_upd_mode
+                   MESSAGES INTO e_messages.
+
+  bdc_subrc = sy-subrc.
+
+*-----------------------------------------------------------------------
+* Process BDC messages
+*-----------------------------------------------------------------------
+
+* Check if there are any errors
+  LOOP AT e_messages TRANSPORTING NO FIELDS
+                     WHERE msgtyp = c_msg_type_error
+                     OR    msgtyp = c_msg_type_abend.
+    EXIT. "Exit loop
+  ENDLOOP.
+
+  IF sy-subrc = 0 OR bdc_subrc <> 0.
+    e_subrc = 4.
+  ENDIF.
+
+ENDMETHOD.
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Instance Public Method ZCL_BC_BDC->CLEAR_BDC_DATA
+* +-------------------------------------------------------------------------------------------------+
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+METHOD CLEAR_BDC_DATA.
+
+  CLEAR: me->bdcdata.
+
+ENDMETHOD.
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Instance Private Method ZCL_BC_BDC->CONSTRUCTOR
+* +-------------------------------------------------------------------------------------------------+
+* | [--->] I_BDC_TYPE                     TYPE        C
+* | [--->] I_TCODE                        TYPE        TCODE
+* | [--->] I_BDC_MODE                     TYPE        C
+* | [--->] I_UPD_MODE                     TYPE        C
+* | [--->] I_GROUP                        TYPE        APQI-GROUPID
+* | [--->] I_USER                         TYPE        APQI-USERID
+* | [--->] I_KEEP                         TYPE        APQI-QERASE
+* | [--->] I_HOLDDATE                     TYPE        APQI-STARTDATE
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+METHOD constructor.
+
+  me->bdc_type    = i_bdc_type.
+  me->tcode       = i_tcode.
+  me->ct_bdc_mode = i_bdc_mode.
+  me->ct_upd_mode = i_upd_mode.
+  me->bi_group    = i_group.
+  me->bi_user     = i_user.
+  me->bi_keep     = i_keep.
+  me->bi_holddate = i_holddate.
+
+ENDMETHOD.
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Instance Private Method ZCL_BC_BDC->CREATE_BATCH_INPUT_SESS
+* +-------------------------------------------------------------------------------------------------+
+* | [!CX!] ZCX_BATCH_INPUT_ERROR
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+METHOD create_batch_input_sess.
+
+  CALL FUNCTION 'BDC_OPEN_GROUP'
+    EXPORTING
+      group               = me->bi_group
+      holddate            = me->bi_holddate
+      keep                = me->bi_keep
+      user                = me->bi_user
+    EXCEPTIONS
+      client_invalid      = 1
+      destination_invalid = 2
+      group_invalid       = 3
+      group_is_locked     = 4
+      holddate_invalid    = 5
+      internal_error      = 6
+      queue_error         = 7
+      running             = 8
+      system_lock_error   = 9
+      user_invalid        = 10
+      OTHERS              = 11.
+  IF sy-subrc <> 0.
+    RAISE EXCEPTION TYPE zcx_batch_input_error
+      EXPORTING
+        msgty = sy-msgty
+        msgid = sy-msgid
+        msgno = sy-msgno
+        msgv1 = sy-msgv1
+        msgv2 = sy-msgv2
+        msgv3 = sy-msgv3
+        msgv4 = sy-msgv4.
+  ENDIF.
+
+  CALL FUNCTION 'BDC_INSERT'
+    EXPORTING
+      tcode            = me->tcode
+    TABLES
+      dynprotab        = me->bdcdata
+    EXCEPTIONS
+      internal_error   = 1
+      not_open         = 2
+      queue_error      = 3
+      tcode_invalid    = 4
+      printing_invalid = 5
+      posting_invalid  = 6
+      OTHERS           = 7.
+  IF sy-subrc <> 0.
+    RAISE EXCEPTION TYPE zcx_batch_input_error
+      EXPORTING
+        msgty = sy-msgty
+        msgid = sy-msgid
+        msgno = sy-msgno
+        msgv1 = sy-msgv1
+        msgv2 = sy-msgv2
+        msgv3 = sy-msgv3
+        msgv4 = sy-msgv4.
+  ENDIF.
+
+  CALL FUNCTION 'BDC_CLOSE_GROUP'
+    EXCEPTIONS
+      not_open    = 1
+      queue_error = 2
+      OTHERS      = 3.
+  IF sy-subrc <> 0.
+    RAISE EXCEPTION TYPE zcx_batch_input_error
+      EXPORTING
+        msgty = sy-msgty
+        msgid = sy-msgid
+        msgno = sy-msgno
+        msgv1 = sy-msgv1
+        msgv2 = sy-msgv2
+        msgv3 = sy-msgv3
+        msgv4 = sy-msgv4.
+  ENDIF.
+
+ENDMETHOD.
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Instance Public Method ZCL_BC_BDC->PROCESS
+* +-------------------------------------------------------------------------------------------------+
+* | [<---] E_SUBRC                        TYPE        SY-SUBRC
+* | [<---] E_MESSAGES                     TYPE        TAB_BDCMSGCOLL
+* | [!CX!] ZCX_BATCH_INPUT_ERROR
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+METHOD process.
+
+  CLEAR: e_subrc, e_messages.
+
+  CASE me->bdc_type.
+    WHEN 'CT'.
+      me->call_transaction( IMPORTING e_subrc    = e_subrc
+                                      e_messages = e_messages ).
+    WHEN 'BI'.
+      me->create_batch_input_sess( ).
+  ENDCASE.
+
+ENDMETHOD.
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Static Public Method ZCL_BC_BDC=>S_FREE_INSTANCE
+* +-------------------------------------------------------------------------------------------------+
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+METHOD S_FREE_INSTANCE.
+
+  FREE bdc.
+
+ENDMETHOD.
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Static Public Method ZCL_BC_BDC=>S_INSTANTIATE
+* +-------------------------------------------------------------------------------------------------+
+* | [--->] I_BDC_TYPE                     TYPE        C
+* | [--->] I_TCODE                        TYPE        TCODE
+* | [--->] I_BDC_MODE                     TYPE        C (default ='N')
+* | [--->] I_UPD_MODE                     TYPE        C (default ='S')
+* | [--->] I_GROUP                        TYPE        APQI-GROUPID(optional)
+* | [--->] I_USER                         TYPE        APQI-USERID (default =SY-UNAME)
+* | [--->] I_KEEP                         TYPE        APQI-QERASE(optional)
+* | [--->] I_HOLDDATE                     TYPE        APQI-STARTDATE(optional)
+* | [<-()] R_BDC                          TYPE REF TO ZCL_BC_BDC
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+METHOD s_instantiate.
+
+* Create singleton so that in any single session, only
+* one instance of class exists
+  IF zcl_bc_bdc=>bdc IS NOT BOUND.
+    ASSERT FIELDS i_tcode CONDITION i_tcode IS NOT INITIAL.
+
+    ASSERT FIELDS i_bdc_type CONDITION i_bdc_type = 'CT' OR i_bdc_type = 'BI'.
+
+    CREATE OBJECT zcl_bc_bdc=>bdc
+      EXPORTING
+        i_bdc_type = i_bdc_type
+        i_tcode    = i_tcode
+        i_bdc_mode = i_bdc_mode
+        i_upd_mode = i_upd_mode
+        i_group    = i_group
+        i_user     = i_user
+        i_keep     = i_keep
+        i_holddate = i_holddate.
+  ENDIF.
+  r_bdc = zcl_bc_bdc=>bdc.
+
+ENDMETHOD.
+ENDCLASS.
