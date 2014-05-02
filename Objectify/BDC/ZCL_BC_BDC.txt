@@ -336,7 +336,7 @@ ENDMETHOD.
 * +--------------------------------------------------------------------------------------</SIGNATURE>
 METHOD S_FREE_INSTANCE.
 
-  FREE bdc.
+  FREE zcl_bc_bdc=>bdc.
 
 ENDMETHOD.
 
