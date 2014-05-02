@@ -1,6 +1,7 @@
 This repository contains the source code for the development objects listed in the following SCN blog
 
-xxx
+Objectify: ABAP Objects Model for BDC
+http://scn.sap.com/docs/DOC-54725
 
 
 1) NUGG_BDC_MODEL.nugg
