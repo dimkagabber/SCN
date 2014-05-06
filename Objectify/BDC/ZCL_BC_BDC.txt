@@ -7,41 +7,43 @@ public section.
 *"* public components of class ZCL_BC_BDC
 *"* do not include other source files here!!!
 
-  constants C_MSG_TYPE_INFO type C value 'I'. "#EC NOTEXT
-  constants C_MSG_TYPE_SUCCESS type C value 'S'. "#EC NOTEXT
-  constants C_MSG_TYPE_ERROR type C value 'E'. "#EC NOTEXT
-  constants C_MSG_TYPE_WARNING type C value 'W'. "#EC NOTEXT
-  constants C_MSG_TYPE_ABEND type C value 'A'. "#EC NOTEXT
+  constants CO_MSG_TYPE_INFO type C value 'I'. "#EC NOTEXT
+  constants CO_MSG_TYPE_SUCCESS type C value 'S'. "#EC NOTEXT
+  constants CO_MSG_TYPE_ERROR type C value 'E'. "#EC NOTEXT
+  constants CO_MSG_TYPE_WARNING type C value 'W'. "#EC NOTEXT
+  constants CO_MSG_TYPE_ABEND type C value 'A'. "#EC NOTEXT
 
   class-methods S_INSTANTIATE
     importing
-      !I_BDC_TYPE type C
-      !I_TCODE type TCODE
-      !I_BDC_MODE type C default 'N'
-      !I_UPD_MODE type C default 'S'
-      !I_GROUP type APQI-GROUPID optional
-      !I_USER type APQI-USERID default SY-UNAME
-      !I_KEEP type APQI-QERASE optional
-      !I_HOLDDATE type APQI-STARTDATE optional
+      !IM_BDC_TYPE type C
+      !IM_TCODE type TCODE
+      !IM_BDC_MODE type C default 'N'
+      !IM_UPD_MODE type C default 'S'
+      !IM_GROUP type APQI-GROUPID optional
+      !IM_USER type APQI-USERID default SY-UNAME
+      !IM_KEEP type APQI-QERASE optional
+      !IM_HOLDDATE type APQI-STARTDATE optional
     returning
-      value(R_BDC) type ref to ZCL_BC_BDC .
+      value(RE_BDC) type ref to ZCL_BC_BDC .
   class-methods S_FREE_INSTANCE .
   methods ADD_FIELD
     importing
-      !I_FLD type ANY
-      !I_VAL type ANY
-      !I_CONV type CHAR1 optional .
+      !IM_FLD type ANY
+      !IM_VAL type ANY
+      !IM_CONV type CHAR1 optional .
   methods ADD_SCREEN
     importing
-      !I_REPID type ANY
-      !I_DYNNR type ANY .
+      !IM_REPID type ANY
+      !IM_DYNNR type ANY .
   methods PROCESS
     exporting
-      !E_SUBRC type SY-SUBRC
-      !E_MESSAGES type TAB_BDCMSGCOLL
+      !EX_SUBRC type SY-SUBRC
+      !EX_MESSAGES type TAB_BDCMSGCOLL
     raising
       ZCX_BATCH_INPUT_ERROR .
   methods CLEAR_BDC_DATA .
+*"* protected components of class ZCL_BC_BDC
+*"* do not include other source files here!!!
 *"* protected components of class ZCL_BC_BDC
 *"* do not include other source files here!!!
 protected section.
@@ -62,18 +64,18 @@ private section.
 
   methods CONSTRUCTOR
     importing
-      !I_BDC_TYPE type C
-      !I_TCODE type TCODE
-      !I_BDC_MODE type C
-      !I_UPD_MODE type C
-      !I_GROUP type APQI-GROUPID
-      !I_USER type APQI-USERID
-      !I_KEEP type APQI-QERASE
-      !I_HOLDDATE type APQI-STARTDATE .
+      !IM_BDC_TYPE type C
+      !IM_TCODE type TCODE
+      !IM_BDC_MODE type C
+      !IM_UPD_MODE type C
+      !IM_GROUP type APQI-GROUPID
+      !IM_USER type APQI-USERID
+      !IM_KEEP type APQI-QERASE
+      !IM_HOLDDATE type APQI-STARTDATE .
   methods CALL_TRANSACTION
     exporting
-      !E_SUBRC type SY-SUBRC
-      !E_MESSAGES type TAB_BDCMSGCOLL .
+      !EX_SUBRC type SY-SUBRC
+      !EX_MESSAGES type TAB_BDCMSGCOLL .
   methods CREATE_BATCH_INPUT_SESS
     raising
       ZCX_BATCH_INPUT_ERROR .
@@ -87,9 +89,9 @@ CLASS ZCL_BC_BDC IMPLEMENTATION.
 * <SIGNATURE>---------------------------------------------------------------------------------------+
 * | Instance Public Method ZCL_BC_BDC->ADD_FIELD
 * +-------------------------------------------------------------------------------------------------+
-* | [--->] I_FLD                          TYPE        ANY
-* | [--->] I_VAL                          TYPE        ANY
-* | [--->] I_CONV                         TYPE        CHAR1(optional)
+* | [--->] IM_FLD                          TYPE        ANY
+* | [--->] IM_VAL                          TYPE        ANY
+* | [--->] IM_CONV                         TYPE        CHAR1(optional)
 * +--------------------------------------------------------------------------------------</SIGNATURE>
 METHOD add_field.
 *----------------------------------------------------------------------*
@@ -103,24 +105,24 @@ METHOD add_field.
     bdcdata LIKE LINE OF me->bdcdata.
 
 * Initial values are skipped unless suppress 'S' is used
-  IF i_val IS INITIAL AND i_conv <> 'S'.
+  IF im_val IS INITIAL AND im_conv <> 'S'.
     RETURN.
   ENDIF.
 
-  CASE i_conv.
+  CASE im_conv.
     WHEN 'D'.
       CALL FUNCTION 'CONVERSION_EXIT_MODAT_OUTPUT'
         EXPORTING
-          input  = i_val
+          input  = im_val
         IMPORTING
           output = bdcdata-fval.
 
     WHEN OTHERS.
-      bdcdata-fval = i_val.
+      bdcdata-fval = im_val.
 
   ENDCASE.
 
-  bdcdata-fnam = i_fld.
+  bdcdata-fnam = im_fld.
   APPEND bdcdata TO me->bdcdata.
 
 ENDMETHOD.
@@ -129,8 +131,8 @@ ENDMETHOD.
 * <SIGNATURE>---------------------------------------------------------------------------------------+
 * | Instance Public Method ZCL_BC_BDC->ADD_SCREEN
 * +-------------------------------------------------------------------------------------------------+
-* | [--->] I_REPID                        TYPE        ANY
-* | [--->] I_DYNNR                        TYPE        ANY
+* | [--->] IM_REPID                        TYPE        ANY
+* | [--->] IM_DYNNR                        TYPE        ANY
 * +--------------------------------------------------------------------------------------</SIGNATURE>
 method ADD_SCREEN.
 *----------------------------------------------------------------------*
@@ -139,8 +141,8 @@ method ADD_SCREEN.
   DATA:
     bdcdata LIKE LINE OF me->bdcdata.
 
-  bdcdata-program  = i_repid.
-  bdcdata-dynpro   = i_dynnr.
+  bdcdata-program  = im_repid.
+  bdcdata-dynpro   = im_dynnr.
   bdcdata-dynbegin = 'X'.
   APPEND bdcdata TO me->bdcdata.
 
@@ -150,14 +152,14 @@ endmethod.
 * <SIGNATURE>---------------------------------------------------------------------------------------+
 * | Instance Private Method ZCL_BC_BDC->CALL_TRANSACTION
 * +-------------------------------------------------------------------------------------------------+
-* | [<---] E_SUBRC                        TYPE        SY-SUBRC
-* | [<---] E_MESSAGES                     TYPE        TAB_BDCMSGCOLL
+* | [<---] EX_SUBRC                        TYPE        SY-SUBRC
+* | [<---] EX_MESSAGES                     TYPE        TAB_BDCMSGCOLL
 * +--------------------------------------------------------------------------------------</SIGNATURE>
 METHOD CALL_TRANSACTION.
   DATA:
     bdc_subrc LIKE sy-subrc.
 
-  CLEAR: e_subrc, e_messages.
+  CLEAR: ex_subrc, ex_messages.
 
 *-----------------------------------------------------------------------
 * Call BDC
@@ -167,7 +169,7 @@ METHOD CALL_TRANSACTION.
                    USING  me->bdcdata
                    MODE   me->ct_bdc_mode
                    UPDATE me->ct_upd_mode
-                   MESSAGES INTO e_messages.
+                   MESSAGES INTO ex_messages.
 
   bdc_subrc = sy-subrc.
 
@@ -176,14 +178,14 @@ METHOD CALL_TRANSACTION.
 *-----------------------------------------------------------------------
 
 * Check if there are any errors
-  LOOP AT e_messages TRANSPORTING NO FIELDS
-                     WHERE msgtyp = c_msg_type_error
-                     OR    msgtyp = c_msg_type_abend.
+  LOOP AT ex_messages TRANSPORTING NO FIELDS
+                     WHERE msgtyp = co_msg_type_error
+                     OR    msgtyp = co_msg_type_abend.
     EXIT. "Exit loop
   ENDLOOP.
 
   IF sy-subrc = 0 OR bdc_subrc <> 0.
-    e_subrc = 4.
+    ex_subrc = 4.
   ENDIF.
 
 ENDMETHOD.
@@ -203,25 +205,25 @@ ENDMETHOD.
 * <SIGNATURE>---------------------------------------------------------------------------------------+
 * | Instance Private Method ZCL_BC_BDC->CONSTRUCTOR
 * +-------------------------------------------------------------------------------------------------+
-* | [--->] I_BDC_TYPE                     TYPE        C
-* | [--->] I_TCODE                        TYPE        TCODE
-* | [--->] I_BDC_MODE                     TYPE        C
-* | [--->] I_UPD_MODE                     TYPE        C
-* | [--->] I_GROUP                        TYPE        APQI-GROUPID
-* | [--->] I_USER                         TYPE        APQI-USERID
-* | [--->] I_KEEP                         TYPE        APQI-QERASE
-* | [--->] I_HOLDDATE                     TYPE        APQI-STARTDATE
+* | [--->] IM_BDC_TYPE                     TYPE        C
+* | [--->] IM_TCODE                        TYPE        TCODE
+* | [--->] IM_BDC_MODE                     TYPE        C
+* | [--->] IM_UPD_MODE                     TYPE        C
+* | [--->] IM_GROUP                        TYPE        APQI-GROUPID
+* | [--->] IM_USER                         TYPE        APQI-USERID
+* | [--->] IM_KEEP                         TYPE        APQI-QERASE
+* | [--->] IM_HOLDDATE                     TYPE        APQI-STARTDATE
 * +--------------------------------------------------------------------------------------</SIGNATURE>
 METHOD constructor.
 
-  me->bdc_type    = i_bdc_type.
-  me->tcode       = i_tcode.
-  me->ct_bdc_mode = i_bdc_mode.
-  me->ct_upd_mode = i_upd_mode.
-  me->bi_group    = i_group.
-  me->bi_user     = i_user.
-  me->bi_keep     = i_keep.
-  me->bi_holddate = i_holddate.
+  me->bdc_type    = im_bdc_type.
+  me->tcode       = im_tcode.
+  me->ct_bdc_mode = im_bdc_mode.
+  me->ct_upd_mode = im_upd_mode.
+  me->bi_group    = im_group.
+  me->bi_user     = im_user.
+  me->bi_keep     = im_keep.
+  me->bi_holddate = im_holddate.
 
 ENDMETHOD.
 
@@ -311,18 +313,18 @@ ENDMETHOD.
 * <SIGNATURE>---------------------------------------------------------------------------------------+
 * | Instance Public Method ZCL_BC_BDC->PROCESS
 * +-------------------------------------------------------------------------------------------------+
-* | [<---] E_SUBRC                        TYPE        SY-SUBRC
-* | [<---] E_MESSAGES                     TYPE        TAB_BDCMSGCOLL
+* | [<---] EX_SUBRC                        TYPE        SY-SUBRC
+* | [<---] EX_MESSAGES                     TYPE        TAB_BDCMSGCOLL
 * | [!CX!] ZCX_BATCH_INPUT_ERROR
 * +--------------------------------------------------------------------------------------</SIGNATURE>
 METHOD process.
 
-  CLEAR: e_subrc, e_messages.
+  CLEAR: ex_subrc, ex_messages.
 
   CASE me->bdc_type.
     WHEN 'CT'.
-      me->call_transaction( IMPORTING e_subrc    = e_subrc
-                                      e_messages = e_messages ).
+      me->call_transaction( IMPORTING ex_subrc    = ex_subrc
+                                      ex_messages = ex_messages ).
     WHEN 'BI'.
       me->create_batch_input_sess( ).
   ENDCASE.
@@ -334,7 +336,7 @@ ENDMETHOD.
 * | Static Public Method ZCL_BC_BDC=>S_FREE_INSTANCE
 * +-------------------------------------------------------------------------------------------------+
 * +--------------------------------------------------------------------------------------</SIGNATURE>
-METHOD S_FREE_INSTANCE.
+METHOD s_free_instance.
 
   FREE zcl_bc_bdc=>bdc.
 
@@ -344,37 +346,37 @@ ENDMETHOD.
 * <SIGNATURE>---------------------------------------------------------------------------------------+
 * | Static Public Method ZCL_BC_BDC=>S_INSTANTIATE
 * +-------------------------------------------------------------------------------------------------+
-* | [--->] I_BDC_TYPE                     TYPE        C
-* | [--->] I_TCODE                        TYPE        TCODE
-* | [--->] I_BDC_MODE                     TYPE        C (default ='N')
-* | [--->] I_UPD_MODE                     TYPE        C (default ='S')
-* | [--->] I_GROUP                        TYPE        APQI-GROUPID(optional)
-* | [--->] I_USER                         TYPE        APQI-USERID (default =SY-UNAME)
-* | [--->] I_KEEP                         TYPE        APQI-QERASE(optional)
-* | [--->] I_HOLDDATE                     TYPE        APQI-STARTDATE(optional)
-* | [<-()] R_BDC                          TYPE REF TO ZCL_BC_BDC
+* | [--->] IM_BDC_TYPE                     TYPE        C
+* | [--->] IM_TCODE                        TYPE        TCODE
+* | [--->] IM_BDC_MODE                     TYPE        C (default ='N')
+* | [--->] IM_UPD_MODE                     TYPE        C (default ='S')
+* | [--->] IM_GROUP                        TYPE        APQI-GROUPID(optional)
+* | [--->] IM_USER                         TYPE        APQI-USERID (default =SY-UNAME)
+* | [--->] IM_KEEP                         TYPE        APQI-QERASE(optional)
+* | [--->] IM_HOLDDATE                     TYPE        APQI-STARTDATE(optional)
+* | [<-()] RE_BDC                          TYPE REF TO ZCL_BC_BDC
 * +--------------------------------------------------------------------------------------</SIGNATURE>
 METHOD s_instantiate.
 
 * Create singleton so that in any single session, only
 * one instance of class exists
   IF zcl_bc_bdc=>bdc IS NOT BOUND.
-    ASSERT FIELDS i_tcode CONDITION i_tcode IS NOT INITIAL.
+    ASSERT FIELDS im_tcode CONDITION im_tcode IS NOT INITIAL.
 
-    ASSERT FIELDS i_bdc_type CONDITION i_bdc_type = 'CT' OR i_bdc_type = 'BI'.
+    ASSERT FIELDS im_bdc_type CONDITION im_bdc_type = 'CT' OR im_bdc_type = 'BI'.
 
     CREATE OBJECT zcl_bc_bdc=>bdc
       EXPORTING
-        i_bdc_type = i_bdc_type
-        i_tcode    = i_tcode
-        i_bdc_mode = i_bdc_mode
-        i_upd_mode = i_upd_mode
-        i_group    = i_group
-        i_user     = i_user
-        i_keep     = i_keep
-        i_holddate = i_holddate.
+        im_bdc_type = im_bdc_type
+        im_tcode    = im_tcode
+        im_bdc_mode = im_bdc_mode
+        im_upd_mode = im_upd_mode
+        im_group    = im_group
+        im_user     = im_user
+        im_keep     = im_keep
+        im_holddate = im_holddate.
   ENDIF.
-  r_bdc = zcl_bc_bdc=>bdc.
+  re_bdc = zcl_bc_bdc=>bdc.
 
 ENDMETHOD.
 ENDCLASS.
