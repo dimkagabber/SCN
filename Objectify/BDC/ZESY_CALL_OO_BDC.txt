@@ -45,28 +45,28 @@ START-OF-SELECTION.
 
 * Create an object for BDC
   IF p_tran = 'X'.
-    g_bdc = zcl_bc_bdc=>s_instantiate( i_bdc_type = 'CT'
-                                       i_tcode    = 'VD05' ).
+    g_bdc = zcl_bc_bdc=>s_instantiate( im_bdc_type = 'CT'
+                                       im_tcode    = 'VD05' ).
   ELSEIF p_sess = 'X'.
-    g_bdc = zcl_bc_bdc=>s_instantiate( i_bdc_type = 'BI'
-                                       i_tcode    = 'VD05'
-                                       i_group    = 'MY_SESSION'
-                                       i_keep     = 'X'
-                                       i_holddate = '20140528' ).
+    g_bdc = zcl_bc_bdc=>s_instantiate( im_bdc_type = 'BI'
+                                       im_tcode    = 'VD05'
+                                       im_group    = 'MY_SESSION'
+                                       im_keep     = 'X'
+                                       im_holddate = '20140528' ).
   ENDIF.
 
 * Populate first screen
-  g_bdc->add_screen( i_repid = 'SAPMF02D' i_dynnr = '0507').
-  g_bdc->add_field( i_fld = 'BDC_OKCODE'  i_val = '/00').
-  g_bdc->add_field( i_fld = 'RF02D-KUNNR' i_val = p_kunnr ).
-  g_bdc->add_field( i_fld = 'RF02D-VKORG' i_val = p_vkorg ).
-  g_bdc->add_field( i_fld = 'RF02D-VTWEG' i_val = p_vtweg ).
-  g_bdc->add_field( i_fld = 'RF02D-SPART' i_val = p_spart ).
+  g_bdc->add_screen( im_repid = 'SAPMF02D' im_dynnr = '0507').
+  g_bdc->add_field( im_fld = 'BDC_OKCODE'  im_val = '/00').
+  g_bdc->add_field( im_fld = 'RF02D-KUNNR' im_val = p_kunnr ).
+  g_bdc->add_field( im_fld = 'RF02D-VKORG' im_val = p_vkorg ).
+  g_bdc->add_field( im_fld = 'RF02D-VTWEG' im_val = p_vtweg ).
+  g_bdc->add_field( im_fld = 'RF02D-SPART' im_val = p_spart ).
 * Populate second screen
-  g_bdc->add_screen( i_repid = 'SAPMF02D' i_dynnr = '0510').
-  g_bdc->add_field( i_fld = 'BDC_OKCODE' i_val = '=UPDA').
-  g_bdc->add_field( i_fld = 'KNA1-LIFSD' i_val = p_delblk ).
-  g_bdc->add_field( i_fld = 'KNA1-FAKSD' i_val = p_bilblk ).
+  g_bdc->add_screen( im_repid = 'SAPMF02D' im_dynnr = '0510').
+  g_bdc->add_field( im_fld = 'BDC_OKCODE' im_val = '=UPDA').
+  g_bdc->add_field( im_fld = 'KNA1-LIFSD' im_val = p_delblk ).
+  g_bdc->add_field( im_fld = 'KNA1-FAKSD' im_val = p_bilblk ).
 
 *----------------------------------------------------------------------*
 *  End of Selection
@@ -74,8 +74,8 @@ START-OF-SELECTION.
 END-OF-SELECTION.
 
   IF p_tran = 'X'.
-    g_bdc->process( IMPORTING e_subrc    = g_subrc
-                              e_messages = g_messages ).
+    g_bdc->process( IMPORTING ex_subrc    = g_subrc
+                              ex_messages = g_messages ).
 *   Display processing status
     IF g_subrc = 0.
       WRITE:/ 'Success:'.
