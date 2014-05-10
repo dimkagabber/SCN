@@ -1,0 +1,331 @@
+class ZESYCL_PROXY_FEH definition
+  public
+  create public .
+
+public section.
+*"* public components of class ZESYCL_PROXY_FEH
+*"* do not include other source files here!!!
+
+  interfaces IF_ECH_ACTION .
+
+  methods EXECUTE_IN
+    importing
+      !IS_INPUT type ZESYMT_PROXY_FEH
+    raising
+      ZESYCX_FMT_STANDARD .
+protected section.
+*"* protected components of class ZESYCL_PROXY_FEH
+*"* do not include other source files here!!!
+private section.
+*"* private components of class ZESYCL_PROXY_FEH
+*"* do not include other source files here!!!
+
+  class-data O_ECH_ACTION type ref to ZESYCL_PROXY_FEH .
+  data T_BAPIRET2 type BAPIRET2_T .
+
+  methods PROCESS
+    importing
+      !IS_INPUT type ZESYMT_PROXY_FEH
+      !IO_FEH_REG type ref to CL_FEH_REGISTRATION
+      !IV_RETRY type XFELD optional
+    raising
+      ZESYCX_FMT_STANDARD .
+  methods COLLECT_FEH_AND_RAISE_ERROR
+    importing
+      !IO_FEH_REG type ref to CL_FEH_REGISTRATION
+      !IS_DATA type ANY
+      !IV_ERROR_CAT type ECH_DTE_ERROR_CATEGORY
+      !IV_OBJTYPE type ECH_STR_OBJECT-OBJTYPE
+      !IV_OBJKEY type ANY
+    raising
+      ZESYCX_FMT_STANDARD .
+  methods ADD_MESSAGE
+    importing
+      !IV_MSGTY type SYMSGTY
+      !IV_MSGID type MSGID
+      !IV_MSGNO type ANY
+      !IV_MSGV1 type ANY optional
+      !IV_MSGV2 type ANY optional
+      !IV_MSGV3 type ANY optional
+      !IV_MSGV4 type ANY optional .
+ENDCLASS.
+
+
+
+CLASS ZESYCL_PROXY_FEH IMPLEMENTATION.
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Instance Private Method ZESYCL_PROXY_FEH->ADD_MESSAGE
+* +-------------------------------------------------------------------------------------------------+
+* | [--->] IV_MSGTY                       TYPE        SYMSGTY
+* | [--->] IV_MSGID                       TYPE        MSGID
+* | [--->] IV_MSGNO                       TYPE        ANY
+* | [--->] IV_MSGV1                       TYPE        ANY(optional)
+* | [--->] IV_MSGV2                       TYPE        ANY(optional)
+* | [--->] IV_MSGV3                       TYPE        ANY(optional)
+* | [--->] IV_MSGV4                       TYPE        ANY(optional)
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+METHOD add_message.
+
+  DATA:
+   ls_bapiret2 LIKE LINE OF me->t_bapiret2.
+
+  ls_bapiret2-type        = iv_msgty.
+  ls_bapiret2-id          = iv_msgid.
+  ls_bapiret2-number      = iv_msgno.
+  ls_bapiret2-message_v1  = iv_msgv1.
+  ls_bapiret2-message_v2  = iv_msgv2.
+  ls_bapiret2-message_v3  = iv_msgv3.
+  ls_bapiret2-message_v4  = iv_msgv4.
+  APPEND ls_bapiret2 TO me->t_bapiret2.
+
+ENDMETHOD.
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Instance Private Method ZESYCL_PROXY_FEH->COLLECT_FEH_AND_RAISE_ERROR
+* +-------------------------------------------------------------------------------------------------+
+* | [--->] IO_FEH_REG                     TYPE REF TO CL_FEH_REGISTRATION
+* | [--->] IS_DATA                        TYPE        ANY
+* | [--->] IV_ERROR_CAT                   TYPE        ECH_DTE_ERROR_CATEGORY
+* | [--->] IV_OBJTYPE                     TYPE        ECH_STR_OBJECT-OBJTYPE
+* | [--->] IV_OBJKEY                      TYPE        ANY
+* | [!CX!] ZESYCX_FMT_STANDARD
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+METHOD collect_feh_and_raise_error.
+
+  DATA:
+    ls_main_object  TYPE ech_str_object,
+    ls_bapiret2     LIKE LINE OF me->t_bapiret2.
+
+* 1) Collect the error message into FEH
+  ls_main_object-objcat  = '1'.           "Business Object
+  ls_main_object-objtype = iv_objtype.    "Based on /SAPPO/S_OBJECT
+  ls_main_object-objkey  = iv_objkey.
+
+* Set the first message from BAPIRET as the main message.
+  LOOP AT me->t_bapiret2 INTO ls_bapiret2 WHERE type = 'E' OR type = 'A'.
+    EXIT.
+  ENDLOOP.
+
+  TRY.
+      io_feh_reg->collect( i_single_bo      = is_data
+                           i_error_category = iv_error_cat    "Based on values in /SAPPO/SERR_CAT
+                           i_main_message   = ls_bapiret2
+                           i_messages       = me->t_bapiret2
+                           i_main_object    = ls_main_object
+                           i_pre_mapping    = 'X'             "Error occurred during mapping
+                           ).
+    CATCH cx_ai_system_fault .
+  ENDTRY.
+
+* 2) Trigger application fault to enable ECH/FEH to be triggered
+  cl_proxy_fault=>raise( exception_class_name = 'ZESYCX_FMT_STANDARD'
+                         bapireturn_tab       = me->t_bapiret2 ).
+
+** 2) Trigger application fault to enable ECH/FEH to be triggered
+*  ls_standard-fault_text  = 'Triggering Proxy Fault Message'.
+*  ls_standard-fault_url   = 'http://www.google.com'.
+*
+*  ls_fault_detail-severity  = 'error'.
+*  ls_fault_detail-text      = 'FEH Error 1'.
+*  ls_fault_detail-url       = 'http://www.yahoo.com'.
+*  ls_fault_detail-id        = '123'.
+*  APPEND ls_fault_detail TO ls_standard-fault_detail.
+*
+*  RAISE EXCEPTION TYPE zesycx_fmt_standard
+*    EXPORTING
+*      standard = ls_standard.
+
+ENDMETHOD.
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Instance Public Method ZESYCL_PROXY_FEH->EXECUTE_IN
+* +-------------------------------------------------------------------------------------------------+
+* | [--->] IS_INPUT                       TYPE        ZESYMT_PROXY_FEH
+* | [!CX!] ZESYCX_FMT_STANDARD
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+METHOD execute_in.
+
+  DATA:
+    lo_feh_reg TYPE REF TO cl_feh_registration.
+
+* Create instance of CL_FEH_REGISTRATION
+  TRY.
+      lo_feh_reg = cl_feh_registration=>s_initialize( ).
+    CATCH cx_ai_system_fault.
+  ENDTRY.
+
+* Process the data
+  me->process( is_input   = is_input
+               io_feh_reg = lo_feh_reg ).
+
+ENDMETHOD.
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Instance Public Method ZESYCL_PROXY_FEH->IF_ECH_ACTION~FAIL
+* +-------------------------------------------------------------------------------------------------+
+* | [--->] I_DATA                         TYPE REF TO STRING
+* | [--->] I_ERROR_OBJECT_ID              TYPE        ECH_DTE_ERROR_OBJECT_ID(optional)
+* | [--->] I_MAIN_ERROR                   TYPE        BAPIRET2
+* | [--->] I_MESSAGES                     TYPE        BAPIRET2_T
+* | [--->] I_ERROR_CATEGORY               TYPE        ECH_DTE_ERROR_CATEGORY
+* | [<---] E_EXECUTION_FAILED             TYPE        XFELD
+* | [<---] E_RETURN_MESSAGE               TYPE        BAPIRET2
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+METHOD if_ech_action~fail.
+
+* Additional processing like send email notification to user informing of fail
+* Order cannot be processed further
+
+  cl_feh_registration=>s_fail( EXPORTING i_data             = i_data
+                               IMPORTING e_execution_failed = e_execution_failed
+                                         e_return_message   = e_return_message ).
+
+ENDMETHOD.
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Instance Public Method ZESYCL_PROXY_FEH->IF_ECH_ACTION~FINALIZE_AFTER_RETRY_ERROR
+* +-------------------------------------------------------------------------------------------------+
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+method IF_ECH_ACTION~FINALIZE_AFTER_RETRY_ERROR.
+endmethod.
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Instance Public Method ZESYCL_PROXY_FEH->IF_ECH_ACTION~FINISH
+* +-------------------------------------------------------------------------------------------------+
+* | [--->] I_DATA                         TYPE REF TO STRING
+* | [--->] I_ERROR_OBJECT_ID              TYPE        ECH_DTE_ERROR_OBJECT_ID(optional)
+* | [<---] E_EXECUTION_FAILED             TYPE        XFELD
+* | [<---] E_RETURN_MESSAGE               TYPE        BAPIRET2
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+METHOD if_ech_action~finish.
+
+* Additional processing like send email notification to user informing of manual confirmation
+
+  cl_feh_registration=>s_finish( EXPORTING i_data             = i_data
+                                 IMPORTING e_execution_failed = e_execution_failed
+                                           e_return_message   = e_return_message ).
+
+ENDMETHOD.
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Instance Public Method ZESYCL_PROXY_FEH->IF_ECH_ACTION~NO_ROLLBACK_ON_RETRY_ERROR
+* +-------------------------------------------------------------------------------------------------+
+* | [<-()] R_NO_ROLLBACK_ON_RETRY_ERROR   TYPE        ABAP_BOOL
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+method IF_ECH_ACTION~NO_ROLLBACK_ON_RETRY_ERROR.
+endmethod.
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Instance Public Method ZESYCL_PROXY_FEH->IF_ECH_ACTION~RETRY
+* +-------------------------------------------------------------------------------------------------+
+* | [--->] I_ERROR_OBJECT_ID              TYPE        ECH_DTE_ERROR_OBJECT_ID
+* | [--->] I_DATA                         TYPE REF TO STRING
+* | [<---] E_EXECUTION_FAILED             TYPE        XFELD
+* | [<---] E_RETURN_MESSAGE               TYPE        BAPIRET2
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+METHOD if_ech_action~retry.
+
+  DATA:
+    lo_feh_reg            TYPE REF TO cl_feh_registration,
+    ls_pre_mapping_input  TYPE zesymt_proxy_feh.
+
+* Create FEH instance for retry
+  lo_feh_reg = cl_feh_registration=>s_retry( i_error_object_id ).
+
+* Retrieve data stored in ECH framework
+  lo_feh_reg->retrieve_data( EXPORTING i_data              = i_data                  "XML data
+                             IMPORTING e_pre_mapping_data  = ls_pre_mapping_input ). "DDIC data
+
+* Application object processing
+  TRY.
+      me->process( is_input   = ls_pre_mapping_input
+                   io_feh_reg = lo_feh_reg
+                   iv_retry   = 'X' ).
+    CATCH zesycx_fmt_standard .
+*     Don't forward application exception raised during FEH retry
+  ENDTRY.
+
+* Update FEH to resolve ticklist
+  lo_feh_reg->resolve_retry( ).
+
+ENDMETHOD.
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Static Public Method ZESYCL_PROXY_FEH=>IF_ECH_ACTION~S_CREATE
+* +-------------------------------------------------------------------------------------------------+
+* | [<-()] R_ACTION_CLASS                 TYPE REF TO IF_ECH_ACTION
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+METHOD if_ech_action~s_create.
+
+  IF o_ech_action IS NOT BOUND.
+    CREATE OBJECT o_ech_action.
+  ENDIF.
+  r_action_class = o_ech_action.
+
+ENDMETHOD.
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Instance Private Method ZESYCL_PROXY_FEH->PROCESS
+* +-------------------------------------------------------------------------------------------------+
+* | [--->] IS_INPUT                       TYPE        ZESYMT_PROXY_FEH
+* | [--->] IO_FEH_REG                     TYPE REF TO CL_FEH_REGISTRATION
+* | [--->] IV_RETRY                       TYPE        XFELD(optional)
+* | [!CX!] ZESYCX_FMT_STANDARD
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+METHOD process.
+  DATA:
+    ls_input_line LIKE LINE OF is_input-mt_proxy_feh-line.
+
+  READ TABLE is_input-mt_proxy_feh-line INTO ls_input_line INDEX 1.
+  CASE ls_input_line-field2.
+    WHEN 'X'.
+      IF iv_retry IS INITIAL.
+*       Set application error during initial processing. For retry, it will be successful
+        me->add_message( iv_msgty = 'E'
+                         iv_msgid = 'AD'
+                         iv_msgno = '010'
+                         iv_msgv1 = 'Main ECH error'
+                         iv_msgv2 = ls_input_line-field1 ).
+        me->add_message( iv_msgty = 'E'
+                         iv_msgid = 'AD'
+                         iv_msgno = '010'
+                         iv_msgv1 = 'Sub ECH error'
+                         iv_msgv2 = ls_input_line-field2 ).
+
+        me->collect_feh_and_raise_error( io_feh_reg   = io_feh_reg
+                                         is_data      = is_input
+                                         iv_error_cat = 'DCE'           "Determination/Conversion Error
+                                         iv_objtype   = 'KNA1'
+                                         iv_objkey    = ls_input_line-field1 ).
+*      ELSE.
+*        me->add_message( iv_msgty = 'E'
+*                         iv_msgid = 'AD'
+*                         iv_msgno = '010'
+*                         iv_msgv1 = 'Retry ECH error'
+*                         iv_msgv2 = ls_input_line-field1
+*                         iv_msgv3 = ls_input_line-field2 ).
+*
+*        me->collect_feh_and_raise_error( io_feh_reg   = io_feh_reg
+*                                         is_data      = is_input
+*                                         iv_error_cat = 'DCE'           "Determination/Conversion Error
+*                                         iv_objtype   = 'KNA1'
+*                                         iv_objkey    = ls_input_line-field1 ).
+
+      ENDIF.
+    WHEN OTHERS.
+      "Successful processing
+  ENDCASE.
+
+ENDMETHOD.
+ENDCLASS.

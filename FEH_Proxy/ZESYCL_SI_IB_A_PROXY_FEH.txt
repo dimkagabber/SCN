@@ -1,0 +1,46 @@
+class ZESYCL_SI_IB_A_PROXY_FEH definition
+  public
+  create public .
+
+public section.
+*"* public components of class ZESYCL_SI_IB_A_PROXY_FEH
+*"* do not include other source files here!!!
+
+  interfaces ZESYII_SI_IB_A_PROXY_FEH .
+protected section.
+*"* protected components of class ZESYCL_SI_IB_A_PROXY_FEH
+*"* do not include other source files here!!!
+private section.
+*"* private components of class ZESYCL_SI_IB_A_PROXY_FEH
+*"* do not include other source files here!!!
+ENDCLASS.
+
+
+
+CLASS ZESYCL_SI_IB_A_PROXY_FEH IMPLEMENTATION.
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Instance Public Method ZESYCL_SI_IB_A_PROXY_FEH->ZESYII_SI_IB_A_PROXY_FEH~SI_IB_A_PROXY_FEH
+* +-------------------------------------------------------------------------------------------------+
+* | [--->] INPUT                          TYPE        ZESYMT_PROXY_FEH
+* | [!CX!] ZESYCX_FMT_STANDARD
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+METHOD zesyii_si_ib_a_proxy_feh~si_ib_a_proxy_feh.
+*** **** INSERT IMPLEMENTATION HERE **** ***
+
+  DATA:
+    lo_object         TYPE REF TO zesycl_proxy_feh,
+    lo_standard_fault TYPE REF TO zesycx_fmt_standard.
+
+  SET UPDATE TASK LOCAL.
+
+  CREATE OBJECT lo_object.
+  TRY.
+      lo_object->execute_in( input ).
+    CATCH zesycx_fmt_standard INTO lo_standard_fault.
+      RAISE EXCEPTION lo_standard_fault.
+  ENDTRY.
+
+ENDMETHOD.
+ENDCLASS.
